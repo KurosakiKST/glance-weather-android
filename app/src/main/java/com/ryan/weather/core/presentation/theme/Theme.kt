@@ -1,4 +1,4 @@
-package com.ryan.weather.ui.theme
+package com.ryan.weather.core.presentation.theme
 
 import android.app.Activity
 import android.os.Build

@@ -1,4 +1,4 @@
-package com.ryan.weather.ui.theme
+package com.ryan.weather.core.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
