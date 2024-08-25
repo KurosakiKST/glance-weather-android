@@ -74,6 +74,9 @@ dependencies {
     debugImplementation(libs.chucker.debug)
     releaseImplementation(libs.chucker.release)
 
+    // Coil
+    implementation(libs.coil.compose)
+
     // Preview
     implementation(libs.androidx.ui.tooling.preview)
 
