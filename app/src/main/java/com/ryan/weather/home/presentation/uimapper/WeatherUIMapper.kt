@@ -10,6 +10,7 @@ import com.ryan.weather.home.presentation.model.ConditionUIModel
 import com.ryan.weather.home.presentation.model.CurrentUIModel
 import com.ryan.weather.home.presentation.model.LocationUIModel
 import com.ryan.weather.home.presentation.model.WeatherUIModel
+import com.ryan.weather.util.DateTimeConverter
 
 object WeatherUIMapper {
 
@@ -29,7 +30,7 @@ object WeatherUIMapper {
             longitude = location.longitude,
             timezone = location.timezone,
             localtimeEpoch = location.localtimeEpoch,
-            localtime = location.localtime
+            localtime = DateTimeConverter.convertDateTime(location.localtime)
         )
     }
 

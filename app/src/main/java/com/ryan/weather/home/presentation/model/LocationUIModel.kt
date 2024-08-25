@@ -8,5 +8,5 @@ data class LocationUIModel (
     val longitude: Double,
     val timezone: String,
     val localtimeEpoch: Long,
-    val localtime: String
+    val localtime: String,
 )
