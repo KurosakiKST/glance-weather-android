@@ -26,6 +26,7 @@ class WeatherVM @Inject constructor(
         apiKey: String,
         city: String
     ) {
+        _weatherState.value = ViewState.Loading
         viewModelScope.launch {
             when (val result = weatherUseCase.getCurrentWeather(
                 apiKey,
@@ -41,6 +42,10 @@ class WeatherVM @Inject constructor(
                     Log.e("WeatherVM", "Error: ${result.error}")
                 }
 
+                is WResult.Loading -> {
+                    _weatherState.value = ViewState.Loading
+                    Log.i("WeatherVM", "Loading")
+                }
             }
         }
     }
