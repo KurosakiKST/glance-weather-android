@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ryan.weather.core.data.RemoteSourceException
 import com.ryan.weather.home.domain.usecase.WeatherUseCase
+import com.ryan.weather.home.presentation.model.ForecastDayUIModel
 import com.ryan.weather.home.presentation.model.WeatherUIModel
 import com.ryan.weather.home.presentation.uimapper.WeatherUIMapper
 import com.ryan.weather.util.ViewState
@@ -23,6 +24,10 @@ class WeatherVM @Inject constructor(
     private val _weatherState = MutableStateFlow<ViewState<WeatherUIModel>>(ViewState.NoData)
     val weatherState: StateFlow<ViewState<WeatherUIModel>> = _weatherState
 
+    private val _forecastState =
+        MutableStateFlow<ViewState<List<ForecastDayUIModel>>>(ViewState.NoData)
+    val forecastState: StateFlow<ViewState<List<ForecastDayUIModel>>> = _forecastState
+
     fun getCurrentWeather(apiKey: String, city: String) {
         _weatherState.value = ViewState.Loading
         viewModelScope.launch {
@@ -31,6 +36,37 @@ class WeatherVM @Inject constructor(
                     Log.i("WeatherVM", "Success: ${result.data}")
                     _weatherState.value = ViewState.Success(WeatherUIMapper.mapToUiModel(result.data))
                 }
+                is WResult.Failure -> {
+                    val errorMessage = when (result.error) {
+                        is RemoteSourceException.Connection -> "Connection error"
+                        is RemoteSourceException.Timeout -> "Timeout error"
+                        is RemoteSourceException.Client -> "Client error"
+                        is RemoteSourceException.Server -> "Server error"
+                        is RemoteSourceException.Unexpected -> "Unexpected error"
+                        is RemoteSourceException.ApiException -> result.error.messageResource.toString()
+                    }
+                    _weatherState.value = ViewState.Error(errorMessage)
+                    Log.e("WeatherVM", "Error: $errorMessage")
+                }
+
+                is WResult.Loading -> {
+                    _weatherState.value = ViewState.Loading
+                    Log.i("WeatherVM", "Loading")
+                }
+            }
+        }
+    }
+
+    fun getForeCastWeather(apiKey: String, city: String, days: Int) {
+        _forecastState.value = ViewState.Loading
+        viewModelScope.launch {
+            when (val result = weatherUseCase.getForecastedWeather(apiKey, city, days)) {
+                is WResult.Success -> {
+                    Log.i("WeatherVM", "Success: ${result.data}")
+                    _forecastState.value =
+                        ViewState.Success(WeatherUIMapper.mapToUiModel(result.data.forecast).forecastDays)
+                }
+
                 is WResult.Failure -> {
                     val errorMessage = when (result.error) {
                         is RemoteSourceException.Connection -> "Connection error"

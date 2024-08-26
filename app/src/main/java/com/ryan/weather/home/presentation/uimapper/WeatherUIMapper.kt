@@ -3,11 +3,18 @@ package com.ryan.weather.home.presentation.uimapper
 import com.ryan.weather.home.domain.model.AirQualityDomainModel
 import com.ryan.weather.home.domain.model.ConditionDomainModel
 import com.ryan.weather.home.domain.model.CurrentDomainModel
+import com.ryan.weather.home.domain.model.DayForecastDomainModel
+import com.ryan.weather.home.domain.model.ForecastDaysDomainModel
+import com.ryan.weather.home.domain.model.ForecastDomainModel
 import com.ryan.weather.home.domain.model.LocationDomainModel
 import com.ryan.weather.home.domain.model.WeatherDomainModel
 import com.ryan.weather.home.presentation.model.AirQualityUIModel
 import com.ryan.weather.home.presentation.model.ConditionUIModel
 import com.ryan.weather.home.presentation.model.CurrentUIModel
+import com.ryan.weather.home.presentation.model.DayForecastUIModel
+import com.ryan.weather.home.presentation.model.ForecastDayUIModel
+import com.ryan.weather.home.presentation.model.ForecastDaysUIModel
+import com.ryan.weather.home.presentation.model.ForecastUIModel
 import com.ryan.weather.home.presentation.model.LocationUIModel
 import com.ryan.weather.home.presentation.model.WeatherUIModel
 import com.ryan.weather.util.DateTimeConverter
@@ -18,6 +25,14 @@ object WeatherUIMapper {
         return WeatherUIModel(
             location = mapToUiModel(domainModel.location),
             current = mapToUiModel(domainModel.current)
+        )
+    }
+
+    fun mapToUiModel(foreCastDomainModel: ForecastDomainModel): ForecastUIModel {
+        return ForecastUIModel(
+            location = mapToUiModel(foreCastDomainModel.location),
+            current = mapToUiModel(foreCastDomainModel.current),
+            forecast = mapToUiModel(foreCastDomainModel.forecast)
         )
     }
 
@@ -54,6 +69,12 @@ object WeatherUIMapper {
             cloud = current.cloud,
             feelsLikeC = current.feelsLikeC,
             feelsLikeF = current.feelsLikeF,
+            windChillC = current.windChillC,
+            windChillF = current.windChillF,
+            heatIndexC = current.heatIndexC,
+            heatIndexF = current.heatIndexF,
+            dewPointC = current.dewPointC,
+            dewPointF = current.dewPointF,
             visKm = current.visKm,
             visMiles = current.visMiles,
             uv = current.uv,
@@ -62,6 +83,44 @@ object WeatherUIMapper {
             airQuality = current.airQuality?.let { mapToUiModel(it) }
         )
     }
+
+    fun mapToUiModel(forecast: ForecastDaysDomainModel): ForecastDaysUIModel {
+        return ForecastDaysUIModel(
+            forecastDays = forecast.forecastDays.map {
+                ForecastDayUIModel(
+                    date = DateTimeConverter.convertDay(it.date),
+                    dateEpoch = it.dateEpoch,
+                    day = mapToUiModel(it.day)
+                )
+            }
+        )
+    }
+
+    fun mapToUiModel(dayDomainModel: DayForecastDomainModel): DayForecastUIModel {
+        return DayForecastUIModel(
+            maxTempC = dayDomainModel.maxTempC,
+            maxTempF = dayDomainModel.maxTempF,
+            minTempC = dayDomainModel.minTempC,
+            minTempF = dayDomainModel.minTempF,
+            avgTempC = dayDomainModel.avgTempC,
+            avgTempF = dayDomainModel.avgTempF,
+            maxWindMph = dayDomainModel.maxWindMph,
+            maxWindKph = dayDomainModel.maxWindKph,
+            totalPrecipMm = dayDomainModel.totalPrecipMm,
+            totalPrecipIn = dayDomainModel.totalPrecipIn,
+            totalSnowCm = dayDomainModel.totalSnowCm,
+            avgVisKm = dayDomainModel.avgVisKm,
+            avgVisMiles = dayDomainModel.avgVisMiles,
+            avgHumidity = dayDomainModel.avgHumidity,
+            dailyWillItRain = dayDomainModel.dailyWillItRain,
+            dailyChanceOfRain = dayDomainModel.dailyChanceOfRain,
+            dailyWillItSnow = dayDomainModel.dailyWillItSnow,
+            dailyChanceOfSnow = dayDomainModel.dailyChanceOfSnow,
+            condition = mapToUiModel(dayDomainModel.condition),
+            uv = dayDomainModel.uv
+        )
+    }
+
 
     fun mapToUiModel(condition: ConditionDomainModel): ConditionUIModel {
         return ConditionUIModel(
