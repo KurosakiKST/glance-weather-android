@@ -33,6 +33,7 @@ import com.ryan.weather.core.presentation.components.ProgressDialog
 import com.ryan.weather.core.presentation.components.SearchTextField
 import com.ryan.weather.home.presentation.components.CurrentWeatherDetailsView
 import com.ryan.weather.home.presentation.components.ForecastDaysView
+import com.ryan.weather.home.presentation.model.CityUIModel
 import com.ryan.weather.home.presentation.model.ForecastDayUIModel
 import com.ryan.weather.home.presentation.model.WeatherUIModel
 import com.ryan.weather.home.viewmodel.WeatherVM
@@ -49,6 +50,8 @@ fun HomeScreen(
 
     var currentWeather by remember { mutableStateOf<WeatherUIModel?>(null) }
     var forecastDays by remember { mutableStateOf<List<ForecastDayUIModel>?>(emptyList()) }
+    var cities by remember { mutableStateOf<List<CityUIModel>?>(emptyList()) }
+
     var searchCity by remember { mutableStateOf("") }
 
     var showAlert by remember { mutableStateOf(false) }
@@ -77,6 +80,14 @@ fun HomeScreen(
             ProgressDialog {
                 showLoading = false
             }
+        }
+    }
+
+    LaunchedEffect(key1 = searchCity) {
+        if (searchCity.length > 2) {
+            viewModel.getCities(Constant.API_KEY, searchCity)
+        } else {
+            cities = null
         }
     }
 
@@ -131,6 +142,28 @@ fun HomeScreen(
                 }
             }
         }
+        scope.launch {
+
+            viewModel.locationState.collect {
+                when (it) {
+                    is ViewState.Error -> {
+                        // Handle error
+                    }
+
+                    ViewState.Loading -> {
+                        // Handle loading
+                    }
+
+                    ViewState.NoData -> {
+                        // Handle no data
+                    }
+
+                    is ViewState.Success -> {
+                        cities = it.data
+                    }
+                }
+            }
+        }
     }
 
     BackgroundImageContainer {
@@ -153,6 +186,7 @@ fun HomeScreen(
                         .fillMaxWidth()
                         .padding(8.dp),
                     value = searchCity,
+                    cities = cities,
                     onValueChange = {
                         searchCity = it
                     },
@@ -166,6 +200,16 @@ fun HomeScreen(
                             searchCity,
                             5
                         )
+                    },
+                    onCitySelected = { city ->
+                        searchCity = city.name
+                        viewModel.getCurrentWeather(Constant.API_KEY, searchCity)
+                        viewModel.getForeCastWeather(Constant.API_KEY, searchCity, 5)
+                        searchCity = ""
+                        cities = null
+                    },
+                    onClearCityList = {
+                        cities = null
                     }
                 )
             }
