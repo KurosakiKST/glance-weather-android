@@ -95,23 +95,19 @@ fun HomeScreen(
                         alertTitle = "Error"
                         alertMsg = it.error
                         showAlert = true
-                        Log.i("Loading", showLoading.toString())
                     }
 
                     ViewState.Loading -> {
                         showLoading = true
-                        Log.i("Loading", showLoading.toString())
                     }
 
                     ViewState.NoData -> {
                         showLoading = false
-                        Log.i("Loading", showLoading.toString())
                     }
 
                     is ViewState.Success -> {
                         showLoading = false
                         currentWeather = it.data
-                        Log.i("Loading", showLoading.toString())
                     }
                 }
             }
@@ -136,7 +132,7 @@ fun HomeScreen(
                 SearchTextField(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 8.dp),
+                        .padding(8.dp),
                     value = searchCity,
                     onValueChange = {
                         searchCity = it
