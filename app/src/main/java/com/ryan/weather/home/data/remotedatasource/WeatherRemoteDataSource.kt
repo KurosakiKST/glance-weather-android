@@ -1,10 +1,13 @@
 package com.ryan.weather.home.data.remotedatasource
 
 import android.util.Log
+import com.google.gson.Gson
 import com.ryan.weather.core.data.RequestErrorHandler
 import com.ryan.weather.core.services.WeatherAPIService
 import com.ryan.weather.home.data.datasource.WeatherDataSource
 import com.ryan.weather.home.data.responsemapper.toDomainModel
+import com.ryan.weather.home.data.responsemodel.ErrorModel
+import com.ryan.weather.home.data.responsemodel.ErrorResponseModel
 import com.ryan.weather.home.domain.model.WeatherDomainModel
 import com.ryan.weather.util.WResult
 import kotlinx.coroutines.Dispatchers
@@ -22,16 +25,22 @@ class WeatherRemoteDataSource @Inject constructor(
             try {
                 val response = weatherAPIService.getCurrentWeather(apiKey, city)
                 if (response.isSuccessful) {
-                    response.body()?.let { weatherResponse ->
-                        Log.d("WeatherRemoteDataSource", "API response: $weatherResponse")
-                        WResult.Success(weatherResponse.toDomainModel())
-                    } ?: run {
-                        Log.e("WeatherRemoteDataSource", "Invalid response body")
-                        WResult.Failure(RequestErrorHandler.getRequestError(Exception("Invalid response body")))
+                    val weatherResult = response.body()?.toDomainModel()
+                    if (weatherResult != null) {
+                        WResult.Success(weatherResult)
+                    } else {
+                        WResult.Failure(
+                            RequestErrorHandler.getApiError(
+                                ErrorResponseModel(
+                                    ErrorModel(-1, "Invalid data")
+                                )
+                            )
+                        )
                     }
                 } else {
-                    Log.e("WeatherRemoteDataSource", "API error: ${response.code()}")
-                    WResult.Failure(RequestErrorHandler.handleHttpException(response.code()))
+                    val errorBody = response.errorBody()?.string()
+                    val errorResponse = Gson().fromJson(errorBody, ErrorResponseModel::class.java)
+                    WResult.Failure(RequestErrorHandler.getApiError(errorResponse))
                 }
             } catch (e: Exception) {
                 Log.e("WeatherRemoteDataSource", "Network error", e)

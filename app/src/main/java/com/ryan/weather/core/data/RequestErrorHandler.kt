@@ -1,5 +1,6 @@
 package com.ryan.weather.core.data
 
+import com.ryan.weather.home.data.responsemodel.ErrorResponseModel
 import retrofit2.HttpException
 import java.io.IOException
 import java.net.SocketTimeoutException
@@ -30,24 +31,15 @@ object RequestErrorHandler {
         }
     }
 
-    private fun handleHttpException(httpException: HttpException): RemoteSourceException {
-        return when (httpException.code()) {
-            in HTTP_CODE_CLIENT_START..HTTP_CODE_CLIENT_END -> {
-                RemoteSourceException.Client("Unexpected Client Error Occurred!")
-            }
-
-            in HTTP_CODE_SERVER_START..HTTP_CODE_SERVER_END -> {
-                RemoteSourceException.Server("Can't connect to error")
-            }
-
-            else -> {
-                RemoteSourceException.Unexpected("Unexpected Error Occurred!")
-            }
+    fun getApiError(errorResponse: ErrorResponseModel): RemoteSourceException {
+        return when (errorResponse.error.code) {
+            1006 -> RemoteSourceException.ApiException(errorResponse.error.message)
+            else -> RemoteSourceException.ApiException("API Error: ${errorResponse.error.message}")
         }
     }
 
-    fun handleHttpException(code: Int): RemoteSourceException {
-        return when (code) {
+    private fun handleHttpException(httpException: HttpException): RemoteSourceException {
+        return when (httpException.code()) {
             in HTTP_CODE_CLIENT_START..HTTP_CODE_CLIENT_END -> {
                 RemoteSourceException.Client("Unexpected Client Error Occurred!")
             }
@@ -69,4 +61,5 @@ sealed class RemoteSourceException(val messageResource: Any?) : RuntimeException
     class Timeout(messageResource: String) : RemoteSourceException(messageResource)
     class Client(messageResource: String) : RemoteSourceException(messageResource)
     class Server(messageResource: Any?) : RemoteSourceException(messageResource)
+    class ApiException(messageResource: String) : RemoteSourceException(messageResource)
 }
