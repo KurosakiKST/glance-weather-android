@@ -8,6 +8,7 @@ import com.ryan.weather.home.data.datasource.WeatherDataSource
 import com.ryan.weather.home.data.responsemapper.toDomainModel
 import com.ryan.weather.home.data.responsemodel.ErrorModel
 import com.ryan.weather.home.data.responsemodel.ErrorResponseModel
+import com.ryan.weather.home.domain.model.ForecastDomainModel
 import com.ryan.weather.home.domain.model.WeatherDomainModel
 import com.ryan.weather.util.WResult
 import kotlinx.coroutines.Dispatchers
@@ -24,6 +25,39 @@ class WeatherRemoteDataSource @Inject constructor(
         return withContext(Dispatchers.IO) {
             try {
                 val response = weatherAPIService.getCurrentWeather(apiKey, city)
+                if (response.isSuccessful) {
+                    val weatherResult = response.body()?.toDomainModel()
+                    if (weatherResult != null) {
+                        WResult.Success(weatherResult)
+                    } else {
+                        WResult.Failure(
+                            RequestErrorHandler.getApiError(
+                                ErrorResponseModel(
+                                    ErrorModel(-1, "Invalid data")
+                                )
+                            )
+                        )
+                    }
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    val errorResponse = Gson().fromJson(errorBody, ErrorResponseModel::class.java)
+                    WResult.Failure(RequestErrorHandler.getApiError(errorResponse))
+                }
+            } catch (e: Exception) {
+                Log.e("WeatherRemoteDataSource", "Network error", e)
+                WResult.Failure(RequestErrorHandler.getRequestError(e))
+            }
+        }
+    }
+
+    override suspend fun getForecastWeather(
+        apiKey: String,
+        city: String,
+        days: Int
+    ): WResult<ForecastDomainModel> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val response = weatherAPIService.getForeCastWeather(apiKey, city, days)
                 if (response.isSuccessful) {
                     val weatherResult = response.body()?.toDomainModel()
                     if (weatherResult != null) {
