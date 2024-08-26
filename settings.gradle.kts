@@ -21,4 +21,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "codigo-coding-test"
 include(":app")
- 
