@@ -2,6 +2,7 @@ package com.ryan.weather.core.di
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.ryan.weather.core.services.LocationAPIService
 import com.ryan.weather.core.services.WeatherAPIService
 import com.ryan.weather.util.Constant
 import dagger.Module
@@ -47,6 +48,12 @@ object NetworkModule {
     @Singleton
     fun provideWeatherAPIService(retrofit: Retrofit): WeatherAPIService {
         return retrofit.create(WeatherAPIService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideLocationAPIService(retrofit: Retrofit): LocationAPIService {
+        return retrofit.create(LocationAPIService::class.java)
     }
 
 }
