@@ -74,6 +74,11 @@ dependencies {
     debugImplementation(libs.chucker.debug)
     releaseImplementation(libs.chucker.release)
 
+    // Room database
+    implementation(libs.room.runtime)
+    kapt(libs.room.compiler)
+    implementation(libs.room.ktx)
+
     // Coil
     implementation(libs.coil.compose)
 
