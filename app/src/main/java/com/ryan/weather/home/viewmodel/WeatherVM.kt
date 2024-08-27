@@ -38,23 +38,14 @@ class WeatherVM @Inject constructor(
     fun getCurrentWeather(apiKey: String, city: String) {
         _weatherState.value = ViewState.Loading
         viewModelScope.launch {
-            val cachedData = weatherUseCase.getCurrentWeather(apiKey, city)
-            if (cachedData is WResult.Success) {
-                _weatherState.value =
-                    ViewState.Offline(WeatherUIMapper.mapToUiModel(cachedData.data))
-            } else {
-                _weatherState.value = ViewState.Loading
-            }
             when (val result = weatherUseCase.getCurrentWeather(apiKey, city)) {
                 is WResult.Success -> {
                     Log.i("WeatherVM", "Success: ${result.data}")
                     _weatherState.value = ViewState.Success(WeatherUIMapper.mapToUiModel(result.data))
                 }
-
                 is WResult.Failure -> {
                     handleError(result, _weatherState)
                 }
-
                 is WResult.Loading -> {
                     _weatherState.value = ViewState.Loading
                     Log.i("WeatherVM", "Loading")
@@ -66,24 +57,15 @@ class WeatherVM @Inject constructor(
     fun getForeCastWeather(apiKey: String, city: String, days: Int) {
         _forecastState.value = ViewState.Loading
         viewModelScope.launch {
-            val cachedData = weatherUseCase.getForecastedWeather(apiKey, city, days)
-            if (cachedData is WResult.Success) {
-                _forecastState.value =
-                    ViewState.Offline(WeatherUIMapper.mapToUiModel(cachedData.data.forecast).forecastDays) // Show offline data
-            } else {
-                _forecastState.value = ViewState.Loading
-            }
             when (val result = weatherUseCase.getForecastedWeather(apiKey, city, days)) {
                 is WResult.Success -> {
-                    Log.i("WeatherVM", "Success: ${result.data}")
+                    Log.i("WeatherVM", "Success:${result.data}")
                     _forecastState.value =
-                        ViewState.Success(WeatherUIMapper.mapToUiModel(result.data.forecast).forecastDays) //Show fresh data
+                        ViewState.Success(WeatherUIMapper.mapToUiModel(result.data.forecast).forecastDays)
                 }
-
                 is WResult.Failure -> {
                     handleError(result, _forecastState)
                 }
-
                 is WResult.Loading -> {
                     _forecastState.value = ViewState.Loading
                     Log.i("WeatherVM", "Loading")
