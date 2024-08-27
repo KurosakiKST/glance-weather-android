@@ -3,7 +3,7 @@ package com.ryan.weather.home.data.repoImpl
 import com.ryan.weather.home.data.datasource.LocationDataSource
 import com.ryan.weather.home.domain.model.CityDomainModel
 import com.ryan.weather.home.domain.repository.LocationRepository
-import com.ryan.weather.util.WResult
+import com.ryan.weather.core.utils.WResult
 import javax.inject.Inject
 
 class LocationRepoImpl @Inject constructor(

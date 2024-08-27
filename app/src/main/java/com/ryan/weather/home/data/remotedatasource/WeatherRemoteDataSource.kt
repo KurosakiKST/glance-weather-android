@@ -5,12 +5,16 @@ import com.google.gson.Gson
 import com.ryan.weather.core.data.RequestErrorHandler
 import com.ryan.weather.core.services.WeatherAPIService
 import com.ryan.weather.home.data.datasource.WeatherDataSource
+import com.ryan.weather.home.data.local.database.entity.weather.CurrentWeatherEntity
 import com.ryan.weather.home.data.responsemapper.toDomainModel
 import com.ryan.weather.home.data.responsemodel.ErrorModel
 import com.ryan.weather.home.data.responsemodel.ErrorResponseModel
 import com.ryan.weather.home.domain.model.ForecastDomainModel
 import com.ryan.weather.home.domain.model.WeatherDomainModel
-import com.ryan.weather.util.WResult
+import com.ryan.weather.core.utils.WResult
+import com.ryan.weather.home.data.local.database.entity.weather.ForecastDayEntity
+import com.ryan.weather.home.data.local.database.entity.weather.ForecastWeatherEntity
+import com.ryan.weather.home.data.local.database.entity.weather.LocationWeatherEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -81,5 +85,21 @@ class WeatherRemoteDataSource @Inject constructor(
                 WResult.Failure(RequestErrorHandler.getRequestError(e))
             }
         }
+    }
+
+    override suspend fun addCurrentWeather(weather: CurrentWeatherEntity) {
+
+    }
+
+    override suspend fun addForecastWeather(forecast: ForecastWeatherEntity) {
+
+    }
+
+    override suspend fun addLocationWeather(locationEntity: LocationWeatherEntity) {
+
+    }
+
+    override suspend fun addForecastDays(forecastDays: List<ForecastDayEntity>) {
+
     }
 }

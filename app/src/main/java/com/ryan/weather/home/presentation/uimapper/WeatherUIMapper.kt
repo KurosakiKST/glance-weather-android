@@ -17,7 +17,7 @@ import com.ryan.weather.home.presentation.model.ForecastDaysUIModel
 import com.ryan.weather.home.presentation.model.ForecastUIModel
 import com.ryan.weather.home.presentation.model.LocationUIModel
 import com.ryan.weather.home.presentation.model.WeatherUIModel
-import com.ryan.weather.util.DateTimeConverter
+import com.ryan.weather.core.helpers.DateTimeConverter
 
 object WeatherUIMapper {
 

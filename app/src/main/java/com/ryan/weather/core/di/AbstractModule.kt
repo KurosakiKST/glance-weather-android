@@ -2,6 +2,7 @@ package com.ryan.weather.core.di
 
 import com.ryan.weather.home.data.datasource.LocationDataSource
 import com.ryan.weather.home.data.datasource.WeatherDataSource
+import com.ryan.weather.home.data.local.datasource.WeatherLocalDataSource
 import com.ryan.weather.home.data.remotedatasource.LocationRemoteDataSource
 import com.ryan.weather.home.data.remotedatasource.WeatherRemoteDataSource
 import com.ryan.weather.home.data.repoImpl.LocationRepoImpl

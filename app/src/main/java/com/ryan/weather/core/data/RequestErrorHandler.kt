@@ -11,55 +11,63 @@ object RequestErrorHandler {
     private const val HTTP_CODE_SERVER_START = 500
     private const val HTTP_CODE_SERVER_END = 599
 
-    fun getRequestError(throwable: Throwable): RemoteSourceException {
+    fun getRequestError(throwable: Throwable): DataSourceException {
         return when (throwable) {
             is HttpException -> {
                 handleHttpException(throwable)
             }
 
             is SocketTimeoutException -> {
-                RemoteSourceException.Timeout("Request Time Out!")
+                DataSourceException.Remote.Timeout("Request Time Out!")
             }
 
             is IOException -> {
-                RemoteSourceException.Connection("Connection Error")
+                DataSourceException.Remote.Connection("Connection Error")
             }
 
             else -> {
-                RemoteSourceException.Unexpected("Unexpected Error Occurred")
+                DataSourceException.Remote.Unexpected("Unexpected Error Occurred")
             }
         }
     }
 
-    fun getApiError(errorResponse: ErrorResponseModel): RemoteSourceException {
+    fun getApiError(errorResponse: ErrorResponseModel): DataSourceException {
         return when (errorResponse.error.code) {
-            1006 -> RemoteSourceException.ApiException(errorResponse.error.message)
-            else -> RemoteSourceException.ApiException("API Error: ${errorResponse.error.message}")
+            1006 -> DataSourceException.Remote.ApiException(errorResponse.error.message)
+            else -> DataSourceException.Remote.ApiException("API Error: ${errorResponse.error.message}")
         }
     }
 
-    private fun handleHttpException(httpException: HttpException): RemoteSourceException {
+    private fun handleHttpException(httpException: HttpException): DataSourceException {
         return when (httpException.code()) {
             in HTTP_CODE_CLIENT_START..HTTP_CODE_CLIENT_END -> {
-                RemoteSourceException.Client("Unexpected Client Error Occurred!")
+                DataSourceException.Remote.Client("Unexpected Client Error Occurred!")
             }
 
             in HTTP_CODE_SERVER_START..HTTP_CODE_SERVER_END -> {
-                RemoteSourceException.Server("Can't connect to error")
+                DataSourceException.Remote.Server("Can't connect to error")
             }
 
             else -> {
-                RemoteSourceException.Unexpected("Unexpected Error Occurred!")
+                DataSourceException.Remote.Unexpected("Unexpected Error Occurred!")
             }
         }
     }
 }
 
-sealed class RemoteSourceException(val messageResource: Any?) : RuntimeException() {
-    class Connection(messageResource: String) : RemoteSourceException(messageResource)
-    class Unexpected(messageResource: String) : RemoteSourceException(messageResource)
-    class Timeout(messageResource: String) : RemoteSourceException(messageResource)
-    class Client(messageResource: String) : RemoteSourceException(messageResource)
-    class Server(messageResource: Any?) : RemoteSourceException(messageResource)
-    class ApiException(messageResource: String) : RemoteSourceException(messageResource)
+sealed class DataSourceException : Throwable() {
+
+    sealed class Remote(val messageResource: Any?) : DataSourceException() {
+        class Connection(messageResource: String) : Remote(messageResource)
+        class Unexpected(messageResource: String) : Remote(messageResource)
+        class Timeout(messageResource: String) : Remote(messageResource)
+        class Client(messageResource: String) : Remote(messageResource)
+        class Server(messageResource: Any?) : Remote(messageResource)
+        class ApiException(messageResource: String) : Remote(messageResource)
+    }
+
+    sealed class Local : DataSourceException() {
+        object NoCachedData : Local()
+        data class DatabaseException(val exception: Throwable) : Local()
+    }
 }

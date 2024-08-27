@@ -31,6 +31,7 @@ import androidx.navigation.compose.rememberNavController
 import com.ryan.weather.core.presentation.components.BackgroundImageContainer
 import com.ryan.weather.core.presentation.components.ProgressDialog
 import com.ryan.weather.core.presentation.components.SearchTextField
+import com.ryan.weather.core.presentation.components.TextH6
 import com.ryan.weather.home.presentation.components.CurrentWeatherDetailsView
 import com.ryan.weather.home.presentation.components.ForecastDaysView
 import com.ryan.weather.home.presentation.model.CityUIModel
@@ -58,6 +59,8 @@ fun HomeScreen(
     var alertTitle by remember { mutableStateOf("") }
     var alertMsg by remember { mutableStateOf("") }
     var showLoading by remember { mutableStateOf(false) }
+
+    var showOfflineData by remember { mutableStateOf(false) }
 
     @Composable
     fun showAlert() {
@@ -98,6 +101,7 @@ fun HomeScreen(
 
                     is ViewState.Error -> {
                         showLoading = false
+                        showOfflineData = true
                         alertTitle = "Error"
                         alertMsg = it.error
                         showAlert = true
@@ -105,15 +109,24 @@ fun HomeScreen(
 
                     ViewState.Loading -> {
                         showLoading = true
+                        showOfflineData = false
                     }
 
                     ViewState.NoData -> {
                         showLoading = false
+                        showOfflineData = false
                     }
 
                     is ViewState.Success -> {
                         showLoading = false
+                        showOfflineData = false
                         currentWeather = it.data
+                    }
+
+                    is ViewState.Offline -> {
+                        showLoading = false
+                        currentWeather = it.data
+                        showOfflineData = true
                     }
                 }
             }
@@ -123,6 +136,7 @@ fun HomeScreen(
                 when (it) {
                     is ViewState.Error -> {
                         showLoading = false
+                        showOfflineData = true
                         alertTitle = "Error"
                         alertMsg = it.error
                         showAlert = true
@@ -130,15 +144,24 @@ fun HomeScreen(
 
                     ViewState.Loading -> {
                         showLoading = true
+                        showOfflineData = false
                     }
 
                     ViewState.NoData -> {
                         showLoading = false
+                        showOfflineData = false
                     }
 
                     is ViewState.Success -> {
                         showLoading = false
+                        showOfflineData = false
                         forecastDays = it.data
+                    }
+
+                    is ViewState.Offline -> {
+                        showLoading = false
+                        forecastDays = it.data
+                        showOfflineData = true
                     }
                 }
             }
@@ -161,6 +184,10 @@ fun HomeScreen(
 
                     is ViewState.Success -> {
                         cities = it.data
+                    }
+
+                    is ViewState.Offline -> {
+
                     }
                 }
             }
@@ -223,12 +250,18 @@ fun HomeScreen(
                     .padding(8.dp)
                     .verticalScroll(rememberScrollState())
             ) {
-                when (showLoading) {
-                    true -> showLoading = true
-                    false -> {
-                        currentWeather?.let { CurrentWeatherDetailsView(it) }
-                        forecastDays?.let { ForecastDaysView(it) }
-                    }
+                if (showLoading) {
+                    showLoading = true
+                } else if (showOfflineData) {
+                    TextH6(
+                        text = "Offline Data",
+                        modifier = Modifier.padding(8.dp)
+                    )
+                    currentWeather?.let { CurrentWeatherDetailsView(it) }
+                    forecastDays?.let { ForecastDaysView(it) }
+                } else {
+                    currentWeather?.let { CurrentWeatherDetailsView(it) }
+                    forecastDays?.let { ForecastDaysView(it) }
                 }
             }
         }
