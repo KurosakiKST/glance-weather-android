@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -35,7 +36,8 @@ fun SplashScreen(navController: NavHostController) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .align(Alignment.Center),
+                    .align(Alignment.Center)
+                    .padding(38.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Image(
@@ -45,7 +47,7 @@ fun SplashScreen(navController: NavHostController) {
                         .size(210.dp)
                         .padding(8.dp)
                 )
-                Spacer(modifier = Modifier.height(60.dp))
+                Spacer(modifier = Modifier.height(16.dp))
                 TextH5(
                     text = "Discover The Weather",
                     modifier = Modifier
@@ -57,7 +59,8 @@ fun SplashScreen(navController: NavHostController) {
                     text = "Get to know your weather forecast &\n radar in your city",
                     modifier = Modifier
                         .padding(8.dp)
-                        .align(Alignment.CenterHorizontally)
+                        .align(Alignment.CenterHorizontally),
+                    fontWeight = FontWeight.Normal
                 )
             }
             PrimaryLargeButton(
@@ -65,7 +68,7 @@ fun SplashScreen(navController: NavHostController) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp)
-                    .padding(bottom = 84.dp)
+                    .padding(bottom = 39.dp)
                     .align(Alignment.BottomCenter),
                 onClick = {
                     navController.navigate(Routes.HomeScreen.route) { popUpTo(0) }

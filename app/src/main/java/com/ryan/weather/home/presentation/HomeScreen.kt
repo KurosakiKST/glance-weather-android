@@ -37,8 +37,8 @@ import com.ryan.weather.home.presentation.model.CityUIModel
 import com.ryan.weather.home.presentation.model.ForecastDayUIModel
 import com.ryan.weather.home.presentation.model.WeatherUIModel
 import com.ryan.weather.home.viewmodel.WeatherVM
-import com.ryan.weather.util.Constant
-import com.ryan.weather.util.ViewState
+import com.ryan.weather.core.utils.Constants
+import com.ryan.weather.core.utils.ViewState
 import kotlinx.coroutines.launch
 
 @Composable
@@ -85,7 +85,7 @@ fun HomeScreen(
 
     LaunchedEffect(key1 = searchCity) {
         if (searchCity.length > 2) {
-            viewModel.getCities(Constant.API_KEY, searchCity)
+            viewModel.getCities(Constants.API_KEY, searchCity)
         } else {
             cities = null
         }
@@ -95,6 +95,7 @@ fun HomeScreen(
         scope.launch {
             viewModel.weatherState.collect {
                 when (it) {
+
                     is ViewState.Error -> {
                         showLoading = false
                         alertTitle = "Error"
@@ -192,19 +193,19 @@ fun HomeScreen(
                     },
                     onSearch = {
                         viewModel.getCurrentWeather(
-                            Constant.API_KEY,
+                            Constants.API_KEY,
                             searchCity
                         )
                         viewModel.getForeCastWeather(
-                            Constant.API_KEY,
+                            Constants.API_KEY,
                             searchCity,
                             5
                         )
                     },
                     onCitySelected = { city ->
                         searchCity = city.name
-                        viewModel.getCurrentWeather(Constant.API_KEY, searchCity)
-                        viewModel.getForeCastWeather(Constant.API_KEY, searchCity, 5)
+                        viewModel.getCurrentWeather(Constants.API_KEY, searchCity)
+                        viewModel.getForeCastWeather(Constants.API_KEY, searchCity, 5)
                         searchCity = ""
                         cities = null
                     },
