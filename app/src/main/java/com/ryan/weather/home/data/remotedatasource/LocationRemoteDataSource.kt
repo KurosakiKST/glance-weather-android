@@ -9,7 +9,7 @@ import com.ryan.weather.home.data.responsemapper.toDomainModel
 import com.ryan.weather.home.data.responsemodel.ErrorModel
 import com.ryan.weather.home.data.responsemodel.ErrorResponseModel
 import com.ryan.weather.home.domain.model.CityDomainModel
-import com.ryan.weather.util.WResult
+import com.ryan.weather.core.utils.WResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

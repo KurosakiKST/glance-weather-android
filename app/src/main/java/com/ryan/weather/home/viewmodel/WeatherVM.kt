@@ -3,7 +3,7 @@ package com.ryan.weather.home.viewmodel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ryan.weather.core.data.RemoteSourceException
+import com.ryan.weather.core.data.DataSourceException
 import com.ryan.weather.home.domain.usecase.LocationUseCase
 import com.ryan.weather.home.domain.usecase.WeatherUseCase
 import com.ryan.weather.home.presentation.model.CityUIModel
@@ -11,8 +11,8 @@ import com.ryan.weather.home.presentation.model.ForecastDayUIModel
 import com.ryan.weather.home.presentation.model.WeatherUIModel
 import com.ryan.weather.home.presentation.uimapper.LocationUIMapper
 import com.ryan.weather.home.presentation.uimapper.WeatherUIMapper
-import com.ryan.weather.util.ViewState
-import com.ryan.weather.util.WResult
+import com.ryan.weather.core.utils.ViewState
+import com.ryan.weather.core.utils.WResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -38,22 +38,21 @@ class WeatherVM @Inject constructor(
     fun getCurrentWeather(apiKey: String, city: String) {
         _weatherState.value = ViewState.Loading
         viewModelScope.launch {
+            val cachedData = weatherUseCase.getCurrentWeather(apiKey, city)
+            if (cachedData is WResult.Success) {
+                _weatherState.value =
+                    ViewState.Offline(WeatherUIMapper.mapToUiModel(cachedData.data))
+            } else {
+                _weatherState.value = ViewState.Loading
+            }
             when (val result = weatherUseCase.getCurrentWeather(apiKey, city)) {
                 is WResult.Success -> {
                     Log.i("WeatherVM", "Success: ${result.data}")
                     _weatherState.value = ViewState.Success(WeatherUIMapper.mapToUiModel(result.data))
                 }
+
                 is WResult.Failure -> {
-                    val errorMessage = when (result.error) {
-                        is RemoteSourceException.Connection -> "Connection error"
-                        is RemoteSourceException.Timeout -> "Timeout error"
-                        is RemoteSourceException.Client -> "Client error"
-                        is RemoteSourceException.Server -> "Server error"
-                        is RemoteSourceException.Unexpected -> "Unexpected error"
-                        is RemoteSourceException.ApiException -> result.error.messageResource.toString()
-                    }
-                    _weatherState.value = ViewState.Error(errorMessage)
-                    Log.e("WeatherVM", "Error: $errorMessage")
+                    handleError(result, _weatherState)
                 }
 
                 is WResult.Loading -> {
@@ -67,24 +66,22 @@ class WeatherVM @Inject constructor(
     fun getForeCastWeather(apiKey: String, city: String, days: Int) {
         _forecastState.value = ViewState.Loading
         viewModelScope.launch {
+            val cachedData = weatherUseCase.getForecastedWeather(apiKey, city, days)
+            if (cachedData is WResult.Success) {
+                _forecastState.value =
+                    ViewState.Offline(WeatherUIMapper.mapToUiModel(cachedData.data.forecast).forecastDays) // Show offline data
+            } else {
+                _forecastState.value = ViewState.Loading
+            }
             when (val result = weatherUseCase.getForecastedWeather(apiKey, city, days)) {
                 is WResult.Success -> {
                     Log.i("WeatherVM", "Success: ${result.data}")
                     _forecastState.value =
-                        ViewState.Success(WeatherUIMapper.mapToUiModel(result.data.forecast).forecastDays)
+                        ViewState.Success(WeatherUIMapper.mapToUiModel(result.data.forecast).forecastDays) //Show fresh data
                 }
 
                 is WResult.Failure -> {
-                    val errorMessage = when (result.error) {
-                        is RemoteSourceException.Connection -> "Connection error"
-                        is RemoteSourceException.Timeout -> "Timeout error"
-                        is RemoteSourceException.Client -> "Client error"
-                        is RemoteSourceException.Server -> "Server error"
-                        is RemoteSourceException.Unexpected -> "Unexpected error"
-                        is RemoteSourceException.ApiException -> result.error.messageResource.toString()
-                    }
-                    _forecastState.value = ViewState.Error(errorMessage)
-                    Log.e("WeatherVM", "Error: $errorMessage")
+                    handleError(result, _forecastState)
                 }
 
                 is WResult.Loading -> {
@@ -106,17 +103,9 @@ class WeatherVM @Inject constructor(
                 }
 
                 is WResult.Failure -> {
-                    val errorMessage = when (result.error) {
-                        is RemoteSourceException.Connection -> "Connection error"
-                        is RemoteSourceException.Timeout -> "Timeout error"
-                        is RemoteSourceException.Client -> "Client error"
-                        is RemoteSourceException.Server -> "Server error"
-                        is RemoteSourceException.Unexpected -> "Unexpected error"
-                        is RemoteSourceException.ApiException -> result.error.messageResource.toString()
-                    }
-                    _locationState.value = ViewState.Error(errorMessage)
-                    Log.e("WeatherVM", "Error: $errorMessage")
+                    handleError(result, _locationState)
                 }
+
                 is WResult.Loading -> {
                     _locationState.value = ViewState.Loading
                     Log.i("WeatherVM", "Loading")
@@ -124,4 +113,22 @@ class WeatherVM @Inject constructor(
             }
         }
     }
+}
+
+private fun <T> handleError(
+    result: WResult.Failure,
+    stateFlow: MutableStateFlow<ViewState<T>>
+) {
+    val errorMessage = when (result.error) {
+        is DataSourceException.Remote.Connection -> "Please turn on your internet connection"
+        is DataSourceException.Remote.Timeout -> "Timeout error"
+        is DataSourceException.Remote.Client -> "Client error"
+        is DataSourceException.Remote.Server -> "Server error"
+        is DataSourceException.Remote.Unexpected -> "Unexpected error"
+        is DataSourceException.Remote.ApiException -> result.error.messageResource.toString()
+        is DataSourceException.Local.NoCachedData -> "No cached data"
+        is DataSourceException.Local.DatabaseException -> "Database error"
+    }
+    stateFlow.value = ViewState.Error(errorMessage)
+    Log.e("WeatherVM", "Error: $errorMessage")
 }
