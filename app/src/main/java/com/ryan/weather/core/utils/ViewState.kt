@@ -1,7 +1,6 @@
-package com.ryan.weather.util
+package com.ryan.weather.core.utils
 
 sealed class ViewState<out T> {
-
     data object Loading : ViewState<Nothing>()
 
     data class Success<T>(val data: T) : ViewState<T>()
@@ -10,4 +9,5 @@ sealed class ViewState<out T> {
 
     data object NoData : ViewState<Nothing>()
 
+    data class Offline<T>(val data: T) : ViewState<T>()
 }
