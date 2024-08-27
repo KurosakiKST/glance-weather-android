@@ -1,4 +1,4 @@
-package com.ryan.weather.util
+package com.ryan.weather.core.helpers
 
 import java.text.ParseException
 import java.text.SimpleDateFormat
