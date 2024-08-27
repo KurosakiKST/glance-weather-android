@@ -33,7 +33,9 @@
 - You can search the weather by typing city name in the search field.
 
 ## assumptions & mistakes
-- Seems like I failed to extract a offline data from database.
+
+- I solved the issue of retrieving cached data from database
+- But some city offline data are showing without showing the "Offline Data" Text
 
 ## Screenshots
 
