@@ -38,6 +38,13 @@ class WeatherVM @Inject constructor(
     fun getCurrentWeather(apiKey: String, city: String) {
         _weatherState.value = ViewState.Loading
         viewModelScope.launch {
+            val cachedData = weatherUseCase.getCurrentWeather(apiKey, city)
+            if (cachedData is WResult.Success) {
+                _weatherState.value =
+                    ViewState.Offline(WeatherUIMapper.mapToUiModel(cachedData.data))
+            } else {
+                _weatherState.value = ViewState.Loading
+            }
             when (val result = weatherUseCase.getCurrentWeather(apiKey, city)) {
                 is WResult.Success -> {
                     Log.i("WeatherVM", "Success: ${result.data}")
@@ -59,11 +66,18 @@ class WeatherVM @Inject constructor(
     fun getForeCastWeather(apiKey: String, city: String, days: Int) {
         _forecastState.value = ViewState.Loading
         viewModelScope.launch {
+            val cachedData = weatherUseCase.getForecastedWeather(apiKey, city, days)
+            if (cachedData is WResult.Success) {
+                _forecastState.value =
+                    ViewState.Offline(WeatherUIMapper.mapToUiModel(cachedData.data.forecast).forecastDays) // Show offline data
+            } else {
+                _forecastState.value = ViewState.Loading
+            }
             when (val result = weatherUseCase.getForecastedWeather(apiKey, city, days)) {
                 is WResult.Success -> {
                     Log.i("WeatherVM", "Success: ${result.data}")
                     _forecastState.value =
-                        ViewState.Success(WeatherUIMapper.mapToUiModel(result.data.forecast).forecastDays)
+                        ViewState.Success(WeatherUIMapper.mapToUiModel(result.data.forecast).forecastDays) //Show fresh data
                 }
 
                 is WResult.Failure -> {
@@ -106,7 +120,7 @@ private fun <T> handleError(
     stateFlow: MutableStateFlow<ViewState<T>>
 ) {
     val errorMessage = when (result.error) {
-        is DataSourceException.Remote.Connection -> "Connection error"
+        is DataSourceException.Remote.Connection -> "Please turn on your internet connection"
         is DataSourceException.Remote.Timeout -> "Timeout error"
         is DataSourceException.Remote.Client -> "Client error"
         is DataSourceException.Remote.Server -> "Server error"
