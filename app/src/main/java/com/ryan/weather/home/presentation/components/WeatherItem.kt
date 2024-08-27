@@ -15,7 +15,7 @@ import com.ryan.weather.core.presentation.components.TextH6
 @Composable
 fun WeatherItem(key: String, value: String) {
     Column(
-        modifier = Modifier.padding(16.dp),
+        modifier = Modifier.padding(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         TextH6(
