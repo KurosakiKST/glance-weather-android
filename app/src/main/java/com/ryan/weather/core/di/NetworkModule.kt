@@ -4,7 +4,7 @@ import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.ryan.weather.core.services.LocationAPIService
 import com.ryan.weather.core.services.WeatherAPIService
-import com.ryan.weather.util.Constant
+import com.ryan.weather.core.utils.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,7 +38,7 @@ object NetworkModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(Constant.BASE_URL)
+            .baseUrl(Constants.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
