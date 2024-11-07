@@ -55,5 +55,5 @@ jobs:
             --token ${{ secrets.FIREBASE_TOKEN }}
 
         env:
-          FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }} # Your Firebase App ID
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}   # Firebase authentication token
+          FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}   # Your Firebase App ID
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}     # Firebase authentication token
