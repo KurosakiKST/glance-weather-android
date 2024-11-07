@@ -41,7 +41,12 @@ jobs:
       - name: Check Java version
         run: java -version
 
-      # Step 5: Upload APK to Firebase App Distribution
+      # Step 5: Install Firebase CLI
+      - name: Install Firebase CLI
+        run: |
+          curl -sL https://firebase.tools | bash
+
+      # Step 6: Upload APK to Firebase App Distribution
       - name: Upload APK to Firebase App Distribution
         run: |
           firebase appdistribution:distribute build/app/outputs/apk/release/app-release.apk \
