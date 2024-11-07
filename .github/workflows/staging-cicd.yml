@@ -15,7 +15,7 @@ jobs:
     steps:
       # Step 1: Checkout the code
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3  # Use the latest stable version (v3)
 
       # Step 2: Set up JDK 17
       - name: Set up JDK 17
@@ -35,7 +35,7 @@ jobs:
 
       # Step 4: Build the project using Gradle
       - name: Build with Gradle
-        run: ./gradlew build --no-daemon
+        run: ./gradlew assembleRelease --no-daemon  # Build the APK in release mode
 
       # Optional: Check Java version (for debugging)
       - name: Check Java version
@@ -55,5 +55,5 @@ jobs:
             --token ${{ secrets.FIREBASE_TOKEN }}
 
         env:
-          FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}   # Your Firebase App ID
+          FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}   # Firebase App ID
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}     # Firebase authentication token
