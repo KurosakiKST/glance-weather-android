@@ -1,4 +1,4 @@
-# Codigo Coding Test by ComfortDelGro
+# Weather App
 
 ## Table of Contents
 
@@ -11,13 +11,13 @@
 1. Clone the repository with ssh to your local machine:
 
     ```bash
-    git clone git@github.com:KurosakiKST/codigo-coding-test.git
+    git clone git@github.com:KurosakiKST/weather-app
     ```
 
-2. Change the directory to 'codigo-coding-test'
+2. Change the directory to 'weather-app'
 
    ```bash
-   cd codigo-coding-test
+   cd weather-app
    ```
 
 3. Open the project in Android Studio.
@@ -33,9 +33,6 @@
 - You can search the weather by typing city name in the search field.
 
 ## assumptions & mistakes
-
-- I solved the issue of retrieving cached data from database
-- But some city offline data are showing without showing the "Offline Data" Text
 
 ## Screenshots
 
