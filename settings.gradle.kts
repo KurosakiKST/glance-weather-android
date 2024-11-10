@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "codigo-coding-test"
+rootProject.name = "weather-app"
 include(":app")
