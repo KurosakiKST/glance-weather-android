@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.hilt.plugin)
     id("org.jetbrains.kotlin.kapt")
+    id("com.google.firebase.appdistribution")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -23,12 +25,17 @@ android {
     }
 
     buildTypes {
+        debug {
+            isMinifyEnabled = false
+            isDebuggable = true
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            isDebuggable = true  // Since we're using it for testing
         }
     }
     compileOptions {
@@ -84,6 +91,10 @@ dependencies {
 
     // Preview
     implementation(libs.androidx.ui.tooling.preview)
+
+    // Firebase
+    implementation(platform("com.google.firebase:firebase-bom:32.7.2"))
+    implementation("com.google.firebase:firebase-analytics-ktx")
 
     // Testing
     testImplementation(libs.junit)
