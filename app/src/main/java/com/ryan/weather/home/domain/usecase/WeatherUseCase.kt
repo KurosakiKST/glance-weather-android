@@ -3,7 +3,7 @@ package com.ryan.weather.home.domain.usecase
 import com.ryan.weather.home.domain.model.ForecastDomainModel
 import com.ryan.weather.home.domain.model.WeatherDomainModel
 import com.ryan.weather.home.domain.repository.WeatherRepository
-import com.ryan.weather.core.utils.WResult
+import com.ryan.weather.core.presentation.utils.WResult
 import javax.inject.Inject
 
 class WeatherUseCase @Inject constructor(

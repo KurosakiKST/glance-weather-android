@@ -93,8 +93,8 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
 
     // Firebase
-    implementation(platform("com.google.firebase:firebase-bom:32.7.2"))
-    implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics.ktx)
 
     // Testing
     testImplementation(libs.junit)
