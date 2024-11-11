@@ -9,10 +9,10 @@ import com.ryan.weather.home.domain.usecase.WeatherUseCase
 import com.ryan.weather.home.presentation.model.CityUIModel
 import com.ryan.weather.home.presentation.model.ForecastDayUIModel
 import com.ryan.weather.home.presentation.model.WeatherUIModel
-import com.ryan.weather.home.presentation.uimapper.LocationUIMapper
-import com.ryan.weather.home.presentation.uimapper.WeatherUIMapper
-import com.ryan.weather.core.utils.ViewState
-import com.ryan.weather.core.utils.WResult
+import com.ryan.weather.home.data.mappers.LocationUIMapper
+import com.ryan.weather.home.data.mappers.WeatherUIMapper
+import com.ryan.weather.core.presentation.utils.ViewState
+import com.ryan.weather.core.presentation.utils.WResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

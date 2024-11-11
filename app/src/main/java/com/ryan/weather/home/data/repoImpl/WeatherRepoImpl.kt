@@ -5,9 +5,9 @@ import com.ryan.weather.home.data.local.database.mapper.WeatherEntityMapper.toEn
 import com.ryan.weather.home.domain.model.ForecastDomainModel
 import com.ryan.weather.home.domain.model.WeatherDomainModel
 import com.ryan.weather.home.domain.repository.WeatherRepository
-import com.ryan.weather.core.utils.WResult
+import com.ryan.weather.core.presentation.utils.WResult
 import com.ryan.weather.home.data.local.datasource.WeatherLocalDataSource
-import com.ryan.weather.home.data.remotedatasource.WeatherRemoteDataSource
+import com.ryan.weather.home.data.remote.WeatherRemoteDataSource
 import javax.inject.Inject
 import javax.inject.Singleton
 

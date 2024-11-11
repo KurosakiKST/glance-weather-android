@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.ryan.weather.R
-import com.ryan.weather.core.nav.Routes
+import com.ryan.weather.core.navigation.Routes
 import com.ryan.weather.core.presentation.components.BackgroundImageContainer
 import com.ryan.weather.core.presentation.components.PrimaryLargeButton
 import com.ryan.weather.core.presentation.components.TextBody1
