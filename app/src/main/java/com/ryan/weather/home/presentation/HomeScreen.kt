@@ -38,8 +38,8 @@ import com.ryan.weather.home.presentation.model.CityUIModel
 import com.ryan.weather.home.presentation.model.ForecastDayUIModel
 import com.ryan.weather.home.presentation.model.WeatherUIModel
 import com.ryan.weather.home.viewmodel.WeatherVM
-import com.ryan.weather.core.utils.Constants
-import com.ryan.weather.core.utils.ViewState
+import com.ryan.weather.core.presentation.utils.Constants
+import com.ryan.weather.core.presentation.utils.ViewState
 import kotlinx.coroutines.launch
 
 @Composable
