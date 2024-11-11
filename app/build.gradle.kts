@@ -28,6 +28,8 @@ android {
         debug {
             isMinifyEnabled = false
             isDebuggable = true
+            buildConfigField("String", "BASE_URL", "\"https://api.weatherapi.com\"")
+            buildConfigField("String", "API_KEY", "\"f500c2f4a97b47a5a86144643242408\"")
         }
         release {
             isMinifyEnabled = false
@@ -35,7 +37,9 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            isDebuggable = true  // Since we're using it for testing
+            isDebuggable = true
+            buildConfigField("String", "BASE_URL", "\"https://api.weatherapi.com\"")
+            buildConfigField("String", "API_KEY", "\"f500c2f4a97b47a5a86144643242408\"")
         }
     }
     compileOptions {
@@ -47,6 +51,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
