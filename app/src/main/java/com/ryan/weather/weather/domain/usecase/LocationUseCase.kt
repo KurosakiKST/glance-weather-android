@@ -2,7 +2,8 @@ package com.ryan.weather.weather.domain.usecase
 
 import com.ryan.weather.weather.domain.model.CityDomainModel
 import com.ryan.weather.weather.domain.repository.LocationRepository
-import com.ryan.weather.core.presentation.utils.WResult
+import com.ryan.weather.core.domain.util.Result
+import com.ryan.weather.core.domain.util.NetworkError
 import javax.inject.Inject
 
 class LocationUseCase @Inject constructor(
@@ -11,7 +12,7 @@ class LocationUseCase @Inject constructor(
     suspend fun getCities(
         apiKey: String,
         city: String
-    ): WResult<List<CityDomainModel>> {
+    ): Result<List<CityDomainModel>, NetworkError> {
         return locationRepository.getCities(apiKey, city)
     }
 }

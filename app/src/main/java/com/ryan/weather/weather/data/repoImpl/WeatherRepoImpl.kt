@@ -1,11 +1,11 @@
 package com.ryan.weather.weather.data.repoImpl
 
-import com.ryan.weather.core.data.DataSourceException
 import com.ryan.weather.weather.data.local.database.mapper.WeatherEntityMapper.toEntity
 import com.ryan.weather.weather.domain.model.ForecastDomainModel
 import com.ryan.weather.weather.domain.model.WeatherDomainModel
 import com.ryan.weather.weather.domain.repository.WeatherRepository
-import com.ryan.weather.core.presentation.utils.WResult
+import com.ryan.weather.core.domain.util.Result
+import com.ryan.weather.core.domain.util.NetworkError
 import com.ryan.weather.weather.data.local.datasource.WeatherLocalDataSource
 import com.ryan.weather.weather.data.remote.WeatherRemoteDataSource
 import javax.inject.Inject
@@ -20,20 +20,20 @@ class WeatherRepoImpl @Inject constructor(
     override suspend fun getCurrentWeather(
         apiKey: String,
         city: String
-    ): WResult<WeatherDomainModel> {
+    ): Result<WeatherDomainModel, NetworkError> {
         return try {
             val localData = weatherLocalDataSource.getCurrentWeather(apiKey, city)
-            if (localData is WResult.Success) {
+            if (localData is Result.Success) {
                 localData
             } else {
                 val remoteData = weatherRemoteDataSource.getCurrentWeather(apiKey, city)
-                if (remoteData is WResult.Success) {
+                if (remoteData is Result.Success) {
                     weatherLocalDataSource.addCurrentWeather(remoteData.data.toEntity())
                 }
                 remoteData
             }
         } catch (e: Exception) {
-            WResult.Failure(DataSourceException.Local.DatabaseException(e))
+            Result.Error(NetworkError.UNKNOWN)
         }
     }
 
@@ -41,24 +41,23 @@ class WeatherRepoImpl @Inject constructor(
         apiKey: String,
         city: String,
         days: Int
-    ): WResult<ForecastDomainModel> {
+    ): Result<ForecastDomainModel, NetworkError> {
         return try {
             val localData = weatherLocalDataSource.getForecastWeather(apiKey, city, days)
-            if (localData is WResult.Success) {
+            if (localData is Result.Success) {
                 localData
             } else {
                 val remoteData = weatherRemoteDataSource.getForecastWeather(apiKey, city, days)
-                if (remoteData is WResult.Success) {
+                if (remoteData is Result.Success) {
                     val locationEntity = remoteData.data.location.toEntity()
                     val currentEntity = remoteData.data.current.toEntity(remoteData.data.location)
                     val forecastEntity = remoteData.data.toEntity(city)
                     weatherLocalDataSource.addForecastWeather(forecastEntity)
-                    val forecastDayEntities =
-                        remoteData.data.forecast.forecastDays.map { forecastDay ->
-                            val forecastDayEntity = forecastDay.toEntity()
-                            forecastDayEntity.city = city
-                            forecastDayEntity
-                        }
+                    val forecastDayEntities = remoteData.data.forecast.forecastDays.map { forecastDay ->
+                        val forecastDayEntity = forecastDay.toEntity()
+                        forecastDayEntity.city = city
+                        forecastDayEntity
+                    }
                     weatherLocalDataSource.addForecastDays(forecastDayEntities)
                     weatherLocalDataSource.addLocationWeather(locationEntity)
                     weatherLocalDataSource.addCurrentWeather(currentEntity)
@@ -66,7 +65,7 @@ class WeatherRepoImpl @Inject constructor(
                 remoteData
             }
         } catch (e: Exception) {
-            WResult.Failure(DataSourceException.Local.DatabaseException(e))
+            Result.Error(NetworkError.UNKNOWN)
         }
     }
 }
