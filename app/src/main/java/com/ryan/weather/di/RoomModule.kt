@@ -3,7 +3,7 @@ package com.ryan.weather.di
 import android.content.Context
 import androidx.room.Room
 import com.ryan.weather.core.presentation.utils.Database
-import com.ryan.weather.home.data.local.database.WeatherDatabase
+import com.ryan.weather.weather.data.local.database.WeatherDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

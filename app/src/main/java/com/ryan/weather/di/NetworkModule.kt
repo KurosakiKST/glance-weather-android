@@ -2,8 +2,8 @@ package com.ryan.weather.di
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
-import com.ryan.weather.home.data.remote.LocationAPIService
-import com.ryan.weather.home.data.remote.WeatherAPIService
+import com.ryan.weather.weather.data.remote.LocationAPIService
+import com.ryan.weather.weather.data.remote.WeatherAPIService
 import com.ryan.weather.core.presentation.utils.NetWorkService
 import dagger.Module
 import dagger.Provides
