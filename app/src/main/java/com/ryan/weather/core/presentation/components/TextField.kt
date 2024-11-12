@@ -20,7 +20,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.ryan.weather.weather.presentation.models.CityUIModel
+import com.ryan.weather.weather.presentation.models.CityUi
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -29,8 +29,8 @@ fun SearchTextField(
     value: String,
     onValueChange: (String) -> Unit,
     onSearch: () -> Unit,
-    cities: List<CityUIModel>?,
-    onCitySelected: (CityUIModel) -> Unit,
+    cities: List<CityUi>?,
+    onCitySelected: (CityUi) -> Unit,
     onClearCityList: () -> Unit
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -105,7 +105,7 @@ fun SearchTextFieldPreview() {
         value = searchText,
         onValueChange = { searchText = it },
         cities = listOf(
-            CityUIModel(
+            CityUi(
                 id = 1,
                 name = "City 1",
                 region = "Region 1",
@@ -114,7 +114,7 @@ fun SearchTextFieldPreview() {
                 longitude = 2.0,
                 url = "url1"
             ),
-            CityUIModel(
+            CityUi(
                 id = 1,
                 name = "City 1",
                 region = "Region 1",

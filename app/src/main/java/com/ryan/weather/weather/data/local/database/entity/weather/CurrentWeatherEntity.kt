@@ -10,9 +10,6 @@ data class CurrentWeatherEntity(
     val city: String,
     val region: String,
     val country: String,
-    val latitude: Double,
-    val longitude: Double,
-    val timezone: String,
     val localtimeEpoch: Long,
     val localtime: String,
 
@@ -35,19 +32,6 @@ data class CurrentWeatherEntity(
     val cloud: Int,
     val feelsLikeC: Double,
     val feelsLikeF: Double,
-    val windChillC: Double,
-    val windChillF: Double,
-    val heatIndexC: Double,
-    val heatIndexF: Double,
-    val dewPointC: Double,
-    val dewPointF: Double,
-    val visKm: Double,
-    val visMiles: Double,
-    val uv: Double,
-    val gustMph: Double,
-    val gustKph: Double,
-    @Embedded
-    val airQuality: AirQualityEntity?
 )
 
 @Entity

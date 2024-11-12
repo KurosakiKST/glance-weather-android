@@ -1,6 +1,5 @@
 package com.ryan.weather.weather.data.mappers
 
-import com.ryan.weather.weather.data.responsemodel.AirQualityResponseModel
 import com.ryan.weather.weather.data.responsemodel.ConditionResponseModel
 import com.ryan.weather.weather.data.responsemodel.CurrentResponseModel
 import com.ryan.weather.weather.data.responsemodel.DayForecastResponseModel
@@ -9,7 +8,6 @@ import com.ryan.weather.weather.data.responsemodel.ForecastDaysResponseModel
 import com.ryan.weather.weather.data.responsemodel.ForecastResponseModel
 import com.ryan.weather.weather.data.responsemodel.LocationResponseModel
 import com.ryan.weather.weather.data.responsemodel.WeatherResponseModel
-import com.ryan.weather.weather.domain.model.AirQualityDomainModel
 import com.ryan.weather.weather.domain.model.ConditionDomainModel
 import com.ryan.weather.weather.domain.model.CurrentDomainModel
 import com.ryan.weather.weather.domain.model.DayForecastDomainModel
@@ -39,9 +37,6 @@ fun LocationResponseModel.toDomainModel(): LocationDomainModel {
         name = name,
         region = region,
         country = country,
-        latitude = lat,
-        longitude = lon,
-        timezone = tzId,
         localtimeEpoch = localtimeEpoch,
         localtime = localtime
     )
@@ -67,18 +62,6 @@ fun CurrentResponseModel.toDomainModel(): CurrentDomainModel {
         cloud = cloud,
         feelsLikeC = feelsLikeC,
         feelsLikeF = feelsLikeF,
-        windChillC = windChillC,
-        windChillF = windChillF,
-        heatIndexC = heatIndexC,
-        heatIndexF = heatIndexF,
-        dewPointC = dewPointC,
-        dewPointF = dewPointF,
-        visKm = visKm,
-        visMiles = visMiles,
-        uv = uv,
-        gustMph = gustMph,
-        gustKph = gustKph,
-        airQuality = airQuality?.toDomainModel(),
     )
 }
 
@@ -126,18 +109,5 @@ fun ConditionResponseModel.toDomainModel(): ConditionDomainModel {
         text = text,
         icon = icon,
         code = code
-    )
-}
-
-fun AirQualityResponseModel.toDomainModel(): AirQualityDomainModel {
-    return AirQualityDomainModel(
-        co = co,
-        no2 = no2,
-        o3= o3,
-        so2 = so2,
-        pm25 = pm25,
-        pm10 = pm10,
-        usEpaIndex = usEpaIndex,
-        gbDefraIndex = gbDefraIndex
     )
 }
