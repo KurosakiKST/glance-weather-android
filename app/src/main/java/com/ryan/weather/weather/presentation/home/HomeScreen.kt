@@ -102,7 +102,7 @@ fun HomeScreen(
                         showLoading = false
                         showOfflineData = true
                         alertTitle = "Error"
-                        alertMsg = it.error
+                        alertMsg = it.error.name
                         showAlert = true
                     }
 
@@ -137,7 +137,7 @@ fun HomeScreen(
                         showLoading = false
                         showOfflineData = true
                         alertTitle = "Error"
-                        alertMsg = it.error
+                        alertMsg = it.error.name
                         showAlert = true
                     }
 
@@ -222,7 +222,7 @@ fun HomeScreen(
                             NetWorkService.API_KEY,
                             searchCity
                         )
-                        viewModel.getForeCastWeather(
+                        viewModel.getForecastedWeather(
                             NetWorkService.API_KEY,
                             searchCity,
                             5
@@ -231,7 +231,7 @@ fun HomeScreen(
                     onCitySelected = { city ->
                         searchCity = city.name
                         viewModel.getCurrentWeather(NetWorkService.API_KEY, searchCity)
-                        viewModel.getForeCastWeather(NetWorkService.API_KEY, searchCity, 5)
+                        viewModel.getForecastedWeather(NetWorkService.API_KEY, searchCity, 5)
                         searchCity = ""
                         cities = null
                     },
