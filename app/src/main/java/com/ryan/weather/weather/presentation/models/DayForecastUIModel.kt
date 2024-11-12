@@ -19,6 +19,6 @@ data class DayForecastUIModel(
     val dailyChanceOfRain: Int,
     val dailyWillItSnow: Int,
     val dailyChanceOfSnow: Int,
-    val condition: ConditionUIModel,
+    val condition: ConditionUi,
     val uv: Double
 )

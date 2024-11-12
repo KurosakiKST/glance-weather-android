@@ -34,9 +34,9 @@ import com.ryan.weather.core.presentation.components.SearchTextField
 import com.ryan.weather.core.presentation.components.TextH6
 import com.ryan.weather.weather.presentation.home.components.CurrentWeatherDetailsView
 import com.ryan.weather.weather.presentation.home.components.ForecastDaysView
-import com.ryan.weather.weather.presentation.models.CityUIModel
-import com.ryan.weather.weather.presentation.models.ForecastDayUIModel
-import com.ryan.weather.weather.presentation.models.WeatherUIModel
+import com.ryan.weather.weather.presentation.models.CityUi
+import com.ryan.weather.weather.presentation.models.ForecastDayUi
+import com.ryan.weather.weather.presentation.models.WeatherUi
 import com.ryan.weather.core.presentation.utils.NetWorkService
 import com.ryan.weather.core.presentation.utils.ViewState
 import kotlinx.coroutines.launch
@@ -48,9 +48,9 @@ fun HomeScreen(
 ) {
     val scope = rememberCoroutineScope()
 
-    var currentWeather by remember { mutableStateOf<WeatherUIModel?>(null) }
-    var forecastDays by remember { mutableStateOf<List<ForecastDayUIModel>?>(emptyList()) }
-    var cities by remember { mutableStateOf<List<CityUIModel>?>(emptyList()) }
+    var currentWeather by remember { mutableStateOf<WeatherUi?>(null) }
+    var forecastDays by remember { mutableStateOf<List<ForecastDayUi>?>(emptyList()) }
+    var cities by remember { mutableStateOf<List<CityUi>?>(emptyList()) }
 
     var searchCity by remember { mutableStateOf("") }
 

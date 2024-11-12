@@ -20,10 +20,10 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.ryan.weather.core.presentation.components.TextBody1
 import com.ryan.weather.core.presentation.components.TextH5
-import com.ryan.weather.weather.presentation.models.WeatherUIModel
+import com.ryan.weather.weather.presentation.models.WeatherUi
 
 @Composable
-fun CurrentWeatherDetailsView(currentWeather: WeatherUIModel) {
+fun CurrentWeatherDetailsView(currentWeather: WeatherUi) {
     Column(
         modifier = Modifier
             .fillMaxWidth()

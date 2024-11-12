@@ -10,9 +10,9 @@ import com.ryan.weather.weather.data.mappers.LocationUIMapper
 import com.ryan.weather.weather.data.mappers.WeatherUIMapper
 import com.ryan.weather.weather.domain.usecase.LocationUseCase
 import com.ryan.weather.weather.domain.usecase.WeatherUseCase
-import com.ryan.weather.weather.presentation.models.CityUIModel
-import com.ryan.weather.weather.presentation.models.ForecastDayUIModel
-import com.ryan.weather.weather.presentation.models.WeatherUIModel
+import com.ryan.weather.weather.presentation.models.CityUi
+import com.ryan.weather.weather.presentation.models.ForecastDayUi
+import com.ryan.weather.weather.presentation.models.WeatherUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -25,15 +25,15 @@ class WeatherVM @Inject constructor(
     private val locationUseCase: LocationUseCase
 ) : ViewModel() {
 
-    private val _weatherState = MutableStateFlow<ViewState<WeatherUIModel>>(ViewState.NoData)
-    val weatherState: StateFlow<ViewState<WeatherUIModel>> = _weatherState
+    private val _weatherState = MutableStateFlow<ViewState<WeatherUi>>(ViewState.NoData)
+    val weatherState: StateFlow<ViewState<WeatherUi>> = _weatherState
 
     private val _forecastState =
-        MutableStateFlow<ViewState<List<ForecastDayUIModel>>>(ViewState.NoData)
-    val forecastState: StateFlow<ViewState<List<ForecastDayUIModel>>> = _forecastState
+        MutableStateFlow<ViewState<List<ForecastDayUi>>>(ViewState.NoData)
+    val forecastState: StateFlow<ViewState<List<ForecastDayUi>>> = _forecastState
 
-    private val _locationState = MutableStateFlow<ViewState<List<CityUIModel>>>(ViewState.NoData)
-    val locationState: StateFlow<ViewState<List<CityUIModel>>> = _locationState
+    private val _locationState = MutableStateFlow<ViewState<List<CityUi>>>(ViewState.NoData)
+    val locationState: StateFlow<ViewState<List<CityUi>>> = _locationState
 
     fun getCurrentWeather(apiKey: String, city: String) {
         _weatherState.value = ViewState.Loading
