@@ -1,6 +1,6 @@
 package com.ryan.weather.core.data
 
-import com.ryan.weather.home.data.responsemodel.ErrorResponseModel
+import com.ryan.weather.weather.data.responsemodel.ErrorResponseModel
 import retrofit2.HttpException
 import java.io.IOException
 import java.net.SocketTimeoutException
