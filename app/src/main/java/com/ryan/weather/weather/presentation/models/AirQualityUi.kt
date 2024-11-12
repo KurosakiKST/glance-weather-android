@@ -1,6 +1,6 @@
 package com.ryan.weather.weather.presentation.models
 
-class AirQualityUIModel (
+class AirQualityUi (
     val co: Double,
     val no2: Double,
     val o3: Double,

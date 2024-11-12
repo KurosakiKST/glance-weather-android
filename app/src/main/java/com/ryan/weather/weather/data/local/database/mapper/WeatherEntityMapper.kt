@@ -9,7 +9,6 @@ import com.ryan.weather.weather.data.local.database.entity.weather.ForecastDayEn
 import com.ryan.weather.weather.data.local.database.entity.weather.ForecastWeatherEntity
 import com.ryan.weather.weather.data.local.database.entity.weather.ForecastWeatherWithDays
 import com.ryan.weather.weather.data.local.database.entity.weather.LocationWeatherEntity
-import com.ryan.weather.weather.domain.model.AirQualityDomainModel
 import com.ryan.weather.weather.domain.model.ConditionDomainModel
 import com.ryan.weather.weather.domain.model.CurrentDomainModel
 import com.ryan.weather.weather.domain.model.DayForecastDomainModel
@@ -27,9 +26,6 @@ object WeatherEntityMapper {
             name = city,
             region = region,
             country = country,
-            latitude = latitude,
-            longitude = longitude,
-            timezone = timezone,
             localtimeEpoch = localtimeEpoch,
             localtime = localtime
         )
@@ -40,9 +36,6 @@ object WeatherEntityMapper {
             city = name,
             region = region,
             country = country,
-            latitude = latitude,
-            longitude = longitude,
-            timezone = timezone,
             localtimeEpoch = localtimeEpoch,
             localtime = localtime
         )
@@ -55,9 +48,6 @@ object WeatherEntityMapper {
                 name = city,
                 region = region,
                 country = country,
-                latitude = latitude,
-                longitude = longitude,
-                timezone = timezone,
                 localtimeEpoch = localtimeEpoch,
                 localtime = localtime
             ),
@@ -84,44 +74,15 @@ object WeatherEntityMapper {
                 cloud = cloud,
                 feelsLikeC = feelsLikeC,
                 feelsLikeF = feelsLikeF,
-                windChillC = windChillC,
-                windChillF = windChillF,
-                heatIndexC = heatIndexC,
-                heatIndexF = heatIndexF,
-                dewPointC = dewPointC,
-                dewPointF = dewPointF,
-                visKm = visKm,
-                visMiles = visMiles,
-                uv = uv,
-                gustMph = gustMph,
-                gustKph = gustKph,
-                airQuality = airQuality?.toDomainModel
             )
         )
     }
-
-    private val AirQualityEntity.toDomainModel: AirQualityDomainModel
-        get() {
-            return AirQualityDomainModel(
-                co = co,
-                no2 = no2,
-                o3 = o3,
-                so2 = so2,
-                pm25 = pm25,
-                pm10 = pm10,
-                usEpaIndex = usEpaIndex,
-                gbDefraIndex = gbDefraIndex
-            )
-        }
 
     fun WeatherDomainModel.toEntity(): CurrentWeatherEntity {
         return CurrentWeatherEntity(
             city = this.location.name,
             region = this.location.region,
             country = this.location.country,
-            latitude = this.location.latitude,
-            longitude = this.location.longitude,
-            timezone = this.location.timezone,
             localtimeEpoch = this.location.localtimeEpoch,
             localtime = this.location.localtime,
             lastUpdatedEpoch = this.current.lastUpdatedEpoch,
@@ -146,18 +107,6 @@ object WeatherEntityMapper {
             cloud = this.current.cloud,
             feelsLikeC = this.current.feelsLikeC,
             feelsLikeF = this.current.feelsLikeF,
-            windChillC = this.current.windChillC,
-            windChillF = this.current.windChillF,
-            heatIndexC = this.current.heatIndexC,
-            heatIndexF = this.current.heatIndexF,
-            dewPointC = this.current.dewPointC,
-            dewPointF = this.current.dewPointF,
-            visKm = this.current.visKm,
-            visMiles = this.current.visMiles,
-            uv = this.current.uv,
-            gustMph = this.current.gustMph,
-            gustKph = this.current.gustKph,
-            airQuality = this.current.airQuality?.toEntity()
         )
     }
 
@@ -166,9 +115,6 @@ object WeatherEntityMapper {
             city = location.name,
             region = location.region,
             country = location.country,
-            latitude = location.latitude,
-            longitude = location.longitude,
-            timezone = location.timezone,
             localtimeEpoch = location.localtimeEpoch,
             localtime = location.localtime,
             lastUpdatedEpoch = lastUpdatedEpoch,
@@ -188,31 +134,6 @@ object WeatherEntityMapper {
             cloud = cloud,
             feelsLikeC = feelsLikeC,
             feelsLikeF = feelsLikeF,
-            windChillC = windChillC,
-            windChillF = windChillF,
-            heatIndexC = heatIndexC,
-            heatIndexF = heatIndexF,
-            dewPointC = dewPointC,
-            dewPointF = dewPointF,
-            visKm = visKm,
-            visMiles = visMiles,
-            uv = uv,
-            gustMph = gustMph,
-            gustKph = gustKph,
-            airQuality = airQuality?.toEntity()
-        )
-    }
-
-    private fun AirQualityDomainModel.toEntity(): AirQualityEntity {
-        return AirQualityEntity(
-            co = this.co,
-            no2 = this.no2,
-            o3 = this.o3,
-            so2 = this.so2,
-            pm25 = this.pm25,
-            pm10 = this.pm10,
-            usEpaIndex = this.usEpaIndex,
-            gbDefraIndex = this.gbDefraIndex
         )
     }
 

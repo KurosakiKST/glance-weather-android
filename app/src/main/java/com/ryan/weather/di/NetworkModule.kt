@@ -2,6 +2,9 @@ package com.ryan.weather.di
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.google.gson.ExclusionStrategy
+import com.google.gson.FieldAttributes
+import com.google.gson.GsonBuilder
 import com.ryan.weather.weather.data.remote.LocationAPIService
 import com.ryan.weather.weather.data.remote.WeatherAPIService
 import com.ryan.weather.core.presentation.utils.NetWorkService
@@ -34,13 +37,23 @@ object NetworkModule {
             .build()
     }
 
+    private val gson = GsonBuilder()
+        .setLenient()
+        .apply {
+            setExclusionStrategies(object : ExclusionStrategy {
+                override fun shouldSkipField(f: FieldAttributes) = false
+                override fun shouldSkipClass(clazz: Class<*>) = false
+            })
+        }
+        .create()
+
     @Provides
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl(NetWorkService.BASE_URL)
             .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }
 

@@ -19,10 +19,10 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.ryan.weather.core.presentation.components.TextBody1
 import com.ryan.weather.core.presentation.components.TextBody2
-import com.ryan.weather.weather.presentation.models.ForecastDayUIModel
+import com.ryan.weather.weather.presentation.models.ForecastDayUi
 
 @Composable
-fun ForecastDaysView(forecastDays: List<ForecastDayUIModel>) {
+fun ForecastDaysView(forecastDays: List<ForecastDayUi>) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -36,7 +36,7 @@ fun ForecastDaysView(forecastDays: List<ForecastDayUIModel>) {
 }
 
 @Composable
-fun ForecastDayView(forecastDay: ForecastDayUIModel) {
+fun ForecastDayView(forecastDay: ForecastDayUi) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
