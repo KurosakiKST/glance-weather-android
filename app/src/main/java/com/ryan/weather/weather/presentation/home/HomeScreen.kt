@@ -23,6 +23,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -39,6 +40,7 @@ import com.ryan.weather.weather.presentation.models.ForecastDayUi
 import com.ryan.weather.weather.presentation.models.WeatherUi
 import com.ryan.weather.core.presentation.utils.NetWorkService
 import com.ryan.weather.core.presentation.utils.ViewState
+import com.ryan.weather.core.presentation.utils.toString
 import kotlinx.coroutines.launch
 
 @Composable
@@ -47,6 +49,8 @@ fun HomeScreen(
     viewModel: WeatherVM = hiltViewModel()
 ) {
     val scope = rememberCoroutineScope()
+
+    val context = LocalContext.current
 
     var currentWeather by remember { mutableStateOf<WeatherUi?>(null) }
     var forecastDays by remember { mutableStateOf<List<ForecastDayUi>?>(emptyList()) }
@@ -102,7 +106,7 @@ fun HomeScreen(
                         showLoading = false
                         showOfflineData = true
                         alertTitle = "Error"
-                        alertMsg = it.error.name
+                        alertMsg = it.error.toString(context)
                         showAlert = true
                     }
 
@@ -137,7 +141,7 @@ fun HomeScreen(
                         showLoading = false
                         showOfflineData = true
                         alertTitle = "Error"
-                        alertMsg = it.error.name
+                        alertMsg = it.error.toString(context)
                         showAlert = true
                     }
 
@@ -170,7 +174,11 @@ fun HomeScreen(
             viewModel.locationState.collect {
                 when (it) {
                     is ViewState.Error -> {
-                        // Handle error
+                        showLoading = false
+                        showOfflineData = true
+                        alertTitle = "Error"
+                        alertMsg = it.error.toString(context)
+                        showAlert = true
                     }
 
                     ViewState.Loading -> {
