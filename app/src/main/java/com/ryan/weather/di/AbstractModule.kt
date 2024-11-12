@@ -1,13 +1,13 @@
 package com.ryan.weather.di
 
-import com.ryan.weather.home.data.datasource.LocationDataSource
-import com.ryan.weather.home.data.datasource.WeatherDataSource
-import com.ryan.weather.home.data.remote.LocationRemoteDataSource
-import com.ryan.weather.home.data.remote.WeatherRemoteDataSource
-import com.ryan.weather.home.data.repoImpl.LocationRepoImpl
-import com.ryan.weather.home.data.repoImpl.WeatherRepoImpl
-import com.ryan.weather.home.domain.repository.LocationRepository
-import com.ryan.weather.home.domain.repository.WeatherRepository
+import com.ryan.weather.weather.data.datasource.LocationDataSource
+import com.ryan.weather.weather.data.datasource.WeatherDataSource
+import com.ryan.weather.weather.data.remote.LocationRemoteDataSource
+import com.ryan.weather.weather.data.remote.WeatherRemoteDataSource
+import com.ryan.weather.weather.data.repoImpl.LocationRepoImpl
+import com.ryan.weather.weather.data.repoImpl.WeatherRepoImpl
+import com.ryan.weather.weather.domain.repository.LocationRepository
+import com.ryan.weather.weather.domain.repository.WeatherRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

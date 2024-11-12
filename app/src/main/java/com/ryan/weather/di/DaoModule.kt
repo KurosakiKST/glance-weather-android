@@ -1,7 +1,7 @@
 package com.ryan.weather.di
 
-import com.ryan.weather.home.data.local.database.WeatherDatabase
-import com.ryan.weather.home.data.local.database.dao.WeatherDao
+import com.ryan.weather.weather.data.local.database.WeatherDatabase
+import com.ryan.weather.weather.data.local.database.dao.WeatherDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
