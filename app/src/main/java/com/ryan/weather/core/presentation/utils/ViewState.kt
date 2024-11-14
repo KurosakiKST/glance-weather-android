@@ -1,6 +1,6 @@
 package com.ryan.weather.core.presentation.utils
 
-import com.ryan.weather.core.domain.util.NetworkError
+import com.ryan.weather.core.domain.utils.NetworkError
 
 sealed class ViewState<out T> {
     data object Loading : ViewState<Nothing>()

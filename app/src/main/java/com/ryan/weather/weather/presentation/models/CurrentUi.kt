@@ -1,6 +1,6 @@
 package com.ryan.weather.weather.presentation.models
 
-data class CurrentUIModel (
+data class CurrentUi (
     val lastUpdatedEpoch: Long,
     val lastUpdated: String,
     val tempC: Double,

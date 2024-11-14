@@ -1,13 +1,13 @@
-package com.ryan.weather.weather.data.responsemodel
+package com.ryan.weather.weather.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class WeatherResponseModel(
-    @SerializedName("location") val location: LocationResponseModel,
-    @SerializedName("current") val current: CurrentResponseModel
+data class WeatherDto(
+    @SerializedName("location") val location: LocationDto,
+    @SerializedName("current") val current: CurrentDto
 )
 
-data class LocationResponseModel(
+data class LocationDto(
     @SerializedName("name") val name: String,
     @SerializedName("region") val region: String,
     @SerializedName("country") val country: String,
@@ -15,13 +15,13 @@ data class LocationResponseModel(
     @SerializedName("localtime") val localtime: String
 )
 
-data class CurrentResponseModel(
+data class CurrentDto(
     @SerializedName("last_updated_epoch") val lastUpdatedEpoch: Long,
     @SerializedName("last_updated") val lastUpdated: String,
     @SerializedName("temp_c") val tempC: Double,
     @SerializedName("temp_f") val tempF: Double,
     @SerializedName("is_day") val isDay: Int,
-    @SerializedName("condition") val condition: ConditionResponseModel,
+    @SerializedName("condition") val condition: ConditionDto,
     @SerializedName("wind_mph") val windMph: Double,
     @SerializedName("wind_kph") val windKph: Double,
     @SerializedName("wind_degree") val windDegree: Int,
@@ -36,7 +36,7 @@ data class CurrentResponseModel(
     @SerializedName("feelslike_f") val feelsLikeF: Double,
 )
 
-data class ConditionResponseModel(
+data class ConditionDto(
     @SerializedName("text") val text: String,
     @SerializedName("icon") val icon: String,
     @SerializedName("code") val code: Int

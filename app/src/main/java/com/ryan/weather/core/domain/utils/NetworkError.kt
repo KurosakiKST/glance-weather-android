@@ -1,4 +1,4 @@
-package com.ryan.weather.core.domain.util
+package com.ryan.weather.core.domain.utils
 
 enum class NetworkError: Error {
     REQUEST_TIMEOUT,

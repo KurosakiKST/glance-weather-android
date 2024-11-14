@@ -1,7 +1,6 @@
 package com.ryan.weather.weather.data.local.database.mapper
 
 import com.ryan.weather.weather.data.local.database.dao.ForecastWithDays
-import com.ryan.weather.weather.data.local.database.entity.weather.AirQualityEntity
 import com.ryan.weather.weather.data.local.database.entity.weather.ConditionEntity
 import com.ryan.weather.weather.data.local.database.entity.weather.CurrentWeatherEntity
 import com.ryan.weather.weather.data.local.database.entity.weather.DayForecastEntity
@@ -9,20 +8,20 @@ import com.ryan.weather.weather.data.local.database.entity.weather.ForecastDayEn
 import com.ryan.weather.weather.data.local.database.entity.weather.ForecastWeatherEntity
 import com.ryan.weather.weather.data.local.database.entity.weather.ForecastWeatherWithDays
 import com.ryan.weather.weather.data.local.database.entity.weather.LocationWeatherEntity
-import com.ryan.weather.weather.domain.model.ConditionDomainModel
-import com.ryan.weather.weather.domain.model.CurrentDomainModel
-import com.ryan.weather.weather.domain.model.DayForecastDomainModel
-import com.ryan.weather.weather.domain.model.ForecastDayDomainModel
-import com.ryan.weather.weather.domain.model.ForecastDaysDomainModel
-import com.ryan.weather.weather.domain.model.ForecastDomainModel
-import com.ryan.weather.weather.domain.model.LocationDomainModel
-import com.ryan.weather.weather.domain.model.WeatherDomainModel
+import com.ryan.weather.weather.domain.model.Condition
+import com.ryan.weather.weather.domain.model.Current
+import com.ryan.weather.weather.domain.model.DayForecast
+import com.ryan.weather.weather.domain.model.ForecastDay
+import com.ryan.weather.weather.domain.model.ForecastDays
+import com.ryan.weather.weather.domain.model.Forecast
+import com.ryan.weather.weather.domain.model.Location
+import com.ryan.weather.weather.domain.model.Weather
 
 object WeatherEntityMapper {
 
     // Location
-    fun LocationWeatherEntity.toDomainModel(): LocationDomainModel {
-        return LocationDomainModel(
+    fun LocationWeatherEntity.toDomainModel(): Location {
+        return Location(
             name = city,
             region = region,
             country = country,
@@ -31,7 +30,7 @@ object WeatherEntityMapper {
         )
     }
 
-    fun LocationDomainModel.toEntity(): LocationWeatherEntity {
+    fun Location.toEntity(): LocationWeatherEntity {
         return LocationWeatherEntity(
             city = name,
             region = region,
@@ -42,22 +41,22 @@ object WeatherEntityMapper {
     }
 
     // Current
-    fun CurrentWeatherEntity.toDomainModel(): WeatherDomainModel {
-        return WeatherDomainModel(
-            location = LocationDomainModel(
+    fun CurrentWeatherEntity.toDomainModel(): Weather {
+        return Weather(
+            location = Location(
                 name = city,
                 region = region,
                 country = country,
                 localtimeEpoch = localtimeEpoch,
                 localtime = localtime
             ),
-            current = CurrentDomainModel(
+            current = Current(
                 lastUpdatedEpoch = lastUpdatedEpoch,
                 lastUpdated = lastUpdated,
                 tempC = tempC,
                 tempF = tempF,
                 isDay = isDay,
-                condition = ConditionDomainModel(
+                condition = Condition(
                     text = condition.text,
                     icon = condition.icon,
                     code = condition.code
@@ -78,7 +77,7 @@ object WeatherEntityMapper {
         )
     }
 
-    fun WeatherDomainModel.toEntity(): CurrentWeatherEntity {
+    fun Weather.toEntity(): CurrentWeatherEntity {
         return CurrentWeatherEntity(
             city = this.location.name,
             region = this.location.region,
@@ -110,7 +109,7 @@ object WeatherEntityMapper {
         )
     }
 
-    fun CurrentDomainModel.toEntity(location: LocationDomainModel): CurrentWeatherEntity {
+    fun Current.toEntity(location: Location): CurrentWeatherEntity {
         return CurrentWeatherEntity(
             city = location.name,
             region = location.region,
@@ -139,34 +138,34 @@ object WeatherEntityMapper {
 
     // Forecast
 
-    fun ForecastDomainModel.toEntity(city: String): ForecastWeatherEntity {
+    fun Forecast.toEntity(city: String): ForecastWeatherEntity {
         return ForecastWeatherEntity(
             city = city
         )
     }
 
     fun ForecastWeatherWithDays.toDomainModel(
-        location: LocationDomainModel,
-        current: CurrentDomainModel
-    ): ForecastDomainModel {
-        return ForecastDomainModel(
+        location: Location,
+        current: Current
+    ): Forecast {
+        return Forecast(
             location = location,
             current = current,
-            forecast = ForecastDaysDomainModel(
+            forecast = ForecastDays(
                 forecastDays = forecastDays.map { it.toDomainModel() }
             )
         )
     }
 
-    fun ForecastDayEntity.toDomainModel(): ForecastDayDomainModel {
-        return ForecastDayDomainModel(
+    fun ForecastDayEntity.toDomainModel(): ForecastDay {
+        return ForecastDay(
             date = date,
             dateEpoch = dateEpoch,
             day = day.toDomainModel()
         )
     }
 
-    fun ForecastDayDomainModel.toEntity(): ForecastDayEntity {
+    fun ForecastDay.toEntity(): ForecastDayEntity {
         return ForecastDayEntity(
             date = date,
             dateEpoch = dateEpoch,
@@ -174,8 +173,8 @@ object WeatherEntityMapper {
         )
     }
 
-    fun DayForecastEntity.toDomainModel(): DayForecastDomainModel {
-        return DayForecastDomainModel(
+    fun DayForecastEntity.toDomainModel(): DayForecast {
+        return DayForecast(
             maxTempC = maxTempC,
             maxTempF = maxTempF,
             minTempC = minTempC,
@@ -199,7 +198,7 @@ object WeatherEntityMapper {
         )
     }
 
-    fun DayForecastDomainModel.toEntity(): DayForecastEntity {
+    fun DayForecast.toEntity(): DayForecastEntity {
         return DayForecastEntity(
             maxTempC = maxTempC,
             maxTempF = maxTempF,
@@ -224,15 +223,15 @@ object WeatherEntityMapper {
         )
     }
 
-    fun ConditionEntity.toDomainModel(): ConditionDomainModel {
-        return ConditionDomainModel(
+    fun ConditionEntity.toDomainModel(): Condition {
+        return Condition(
             code = code,
             text = text,
             icon = icon
         )
     }
 
-    fun ConditionDomainModel.toEntity(): ConditionEntity {
+    fun Condition.toEntity(): ConditionEntity {
         return ConditionEntity(
             code = code,
             text = text,
@@ -241,13 +240,13 @@ object WeatherEntityMapper {
     }
 
     fun ForecastWithDays.toDomainModel(
-        location: LocationDomainModel,
-        current: CurrentDomainModel
-    ): ForecastDomainModel {
-        return ForecastDomainModel(
+        location: Location,
+        current: Current
+    ): Forecast {
+        return Forecast(
             location = location,
             current = current,
-            forecast = ForecastDaysDomainModel(
+            forecast = ForecastDays(
                 forecastDays = days.map { it.toDomainModel() }
             )
         )

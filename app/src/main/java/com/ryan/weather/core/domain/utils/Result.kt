@@ -1,4 +1,4 @@
-package com.ryan.weather.core.domain.util
+package com.ryan.weather.core.domain.utils
 
 typealias DomainError = Error
 

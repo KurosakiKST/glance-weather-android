@@ -91,7 +91,7 @@ fun HomeScreen(
 
     LaunchedEffect(key1 = searchCity) {
         if (searchCity.length > 2) {
-            viewModel.getCities(NetWorkService.API_KEY, searchCity)
+            viewModel.getCities(searchCity)
         } else {
             cities = null
         }

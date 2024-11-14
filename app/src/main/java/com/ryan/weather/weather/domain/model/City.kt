@@ -1,6 +1,6 @@
 package com.ryan.weather.weather.domain.model
 
-data class CityDomainModel(
+data class City(
     val id: Int,
     val name: String,
     val region: String,

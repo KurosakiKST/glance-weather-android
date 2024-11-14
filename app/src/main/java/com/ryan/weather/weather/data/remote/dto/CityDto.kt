@@ -1,8 +1,8 @@
-package com.ryan.weather.weather.data.responsemodel
+package com.ryan.weather.weather.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class CityResponseModel(
+data class CityDto(
     @SerializedName("id")
     val id: Int,
     @SerializedName("name")

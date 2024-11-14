@@ -1,7 +1,7 @@
 package com.ryan.weather.weather.data.remote
 
 import com.ryan.weather.core.presentation.utils.NetWorkService
-import com.ryan.weather.weather.data.responsemodel.CityResponseModel
+import com.ryan.weather.weather.data.remote.dto.CityDto
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -12,6 +12,6 @@ interface LocationAPIService {
     suspend fun getCities(
         @Query("key") apiKey: String,
         @Query("q") city: String
-    ): Response<List<CityResponseModel>>
+    ): Response<List<CityDto>>
 
 }

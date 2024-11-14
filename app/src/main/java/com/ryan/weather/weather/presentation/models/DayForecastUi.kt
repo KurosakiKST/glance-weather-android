@@ -1,6 +1,6 @@
 package com.ryan.weather.weather.presentation.models
 
-data class DayForecastUIModel(
+data class DayForecastUi(
     val maxTempC: Double,
     val maxTempF: Double,
     val minTempC: Double,
