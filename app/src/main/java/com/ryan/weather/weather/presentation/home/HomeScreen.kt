@@ -227,19 +227,17 @@ fun HomeScreen(
                     },
                     onSearch = {
                         viewModel.getCurrentWeather(
-                            NetWorkService.API_KEY,
                             searchCity
                         )
                         viewModel.getForecastedWeather(
-                            NetWorkService.API_KEY,
                             searchCity,
                             5
                         )
                     },
                     onCitySelected = { city ->
                         searchCity = city.name
-                        viewModel.getCurrentWeather(NetWorkService.API_KEY, searchCity)
-                        viewModel.getForecastedWeather(NetWorkService.API_KEY, searchCity, 5)
+                        viewModel.getCurrentWeather(searchCity)
+                        viewModel.getForecastedWeather(searchCity, 5)
                         searchCity = ""
                         cities = null
                     },
