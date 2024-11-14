@@ -16,7 +16,7 @@ android {
         minSdk = 29
         targetSdk = 34
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -28,6 +28,8 @@ android {
         debug {
             isMinifyEnabled = false
             isDebuggable = true
+            buildConfigField("String", "BASE_URL", "\"https://api.weatherapi.com\"")
+            buildConfigField("String", "API_KEY", "\"f500c2f4a97b47a5a86144643242408\"")
         }
         release {
             isMinifyEnabled = false
@@ -35,7 +37,9 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            isDebuggable = true  // Since we're using it for testing
+            isDebuggable = true
+            buildConfigField("String", "BASE_URL", "\"https://api.weatherapi.com\"")
+            buildConfigField("String", "API_KEY", "\"f500c2f4a97b47a5a86144643242408\"")
         }
     }
     compileOptions {
@@ -47,6 +51,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -59,9 +64,9 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
@@ -93,11 +98,12 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
 
     // Firebase
-    implementation(platform("com.google.firebase:firebase-bom:32.7.2"))
-    implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics.ktx)
 
     // Testing
     testImplementation(libs.junit)
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
