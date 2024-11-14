@@ -40,6 +40,7 @@ fun SearchTextField(
         TextField(
             value = value,
             onValueChange = onValueChange,
+            maxLines = 1,
             modifier = modifier
                 .onFocusChanged {
                     isFocused = it.isFocused
