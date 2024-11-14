@@ -1,7 +1,7 @@
 package com.ryan.weather.core.data.networking
 
-import com.ryan.weather.core.domain.util.NetworkError
-import com.ryan.weather.core.domain.util.Result
+import com.ryan.weather.core.domain.utils.NetworkError
+import com.ryan.weather.core.domain.utils.Result
 import java.io.IOException
 import java.net.SocketTimeoutException
 import retrofit2.Response

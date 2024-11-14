@@ -2,7 +2,7 @@ package com.ryan.weather.core.presentation.utils
 
 import android.content.Context
 import com.ryan.weather.R
-import com.ryan.weather.core.domain.util.NetworkError
+import com.ryan.weather.core.domain.utils.NetworkError
 
 fun NetworkError.toString(context: Context): String {
     val resId = when(this) {

@@ -4,10 +4,10 @@ import com.ryan.weather.weather.data.datasource.WeatherDataSource
 import com.ryan.weather.weather.data.local.database.dao.WeatherDao
 import com.ryan.weather.weather.data.local.database.entity.weather.CurrentWeatherEntity
 import com.ryan.weather.weather.data.local.database.mapper.WeatherEntityMapper.toDomainModel
-import com.ryan.weather.weather.domain.model.ForecastDomainModel
-import com.ryan.weather.weather.domain.model.WeatherDomainModel
-import com.ryan.weather.core.domain.util.Result
-import com.ryan.weather.core.domain.util.NetworkError
+import com.ryan.weather.weather.domain.model.Forecast
+import com.ryan.weather.weather.domain.model.Weather
+import com.ryan.weather.core.domain.utils.Result
+import com.ryan.weather.core.domain.utils.NetworkError
 import com.ryan.weather.weather.data.local.database.entity.weather.ForecastDayEntity
 import com.ryan.weather.weather.data.local.database.entity.weather.ForecastWeatherEntity
 import com.ryan.weather.weather.data.local.database.entity.weather.LocationWeatherEntity
@@ -20,7 +20,7 @@ class WeatherLocalDataSource @Inject constructor(
     override suspend fun getCurrentWeather(
         apiKey: String,
         city: String
-    ): Result<WeatherDomainModel, NetworkError> {
+    ): Result<Weather, NetworkError> {
         return try {
             val weatherEntity = weatherDao.getWeather(city)
             if (weatherEntity != null) {
@@ -37,7 +37,7 @@ class WeatherLocalDataSource @Inject constructor(
         apiKey: String,
         city: String,
         days: Int
-    ): Result<ForecastDomainModel, NetworkError> {
+    ): Result<Forecast, NetworkError> {
         return try {
             val forecastWithDays = weatherDao.getForecastWeather(city)
             if (forecastWithDays != null) {

@@ -1,16 +1,16 @@
 package com.ryan.weather.weather.data.remote
 
 import com.ryan.weather.core.data.networking.safeCall
-import com.ryan.weather.core.domain.util.NetworkError
+import com.ryan.weather.core.domain.utils.NetworkError
 import com.ryan.weather.weather.data.datasource.WeatherDataSource
 import com.ryan.weather.weather.data.local.database.entity.weather.CurrentWeatherEntity
 import com.ryan.weather.weather.data.local.database.entity.weather.ForecastDayEntity
 import com.ryan.weather.weather.data.local.database.entity.weather.ForecastWeatherEntity
 import com.ryan.weather.weather.data.local.database.entity.weather.LocationWeatherEntity
-import com.ryan.weather.weather.data.mappers.toDomainModel
-import com.ryan.weather.weather.domain.model.ForecastDomainModel
-import com.ryan.weather.weather.domain.model.WeatherDomainModel
-import com.ryan.weather.core.domain.util.Result
+import com.ryan.weather.weather.domain.model.Forecast
+import com.ryan.weather.weather.domain.model.Weather
+import com.ryan.weather.core.domain.utils.Result
+import com.ryan.weather.weather.data.mappers.toDomain
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -22,11 +22,11 @@ class WeatherRemoteDataSource @Inject constructor(
     override suspend fun getCurrentWeather(
         apiKey: String,
         city: String
-    ): Result<WeatherDomainModel, NetworkError> {
+    ): Result<Weather, NetworkError> {
         return withContext(Dispatchers.IO) {
             safeCall(
                 apiCall = { weatherAPIService.getCurrentWeather(apiKey, city) },
-                onSuccess = { responseBody -> responseBody.toDomainModel() }
+                onSuccess = { responseBody -> responseBody.toDomain() }
             )
         }
     }
@@ -35,11 +35,11 @@ class WeatherRemoteDataSource @Inject constructor(
         apiKey: String,
         city: String,
         days: Int
-    ): Result<ForecastDomainModel, NetworkError> {
+    ): Result<Forecast, NetworkError> {
         return withContext(Dispatchers.IO) {
             safeCall(
                 apiCall = { weatherAPIService.getForeCastWeather(apiKey, city, days) },
-                onSuccess = { responseBody -> responseBody.toDomainModel() }
+                onSuccess = { responseBody -> responseBody.toDomain() }
             )
         }
     }

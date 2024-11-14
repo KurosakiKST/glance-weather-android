@@ -1,11 +1,11 @@
 package com.ryan.weather.weather.domain.model
 
-data class WeatherDomainModel(
-    val location: LocationDomainModel,
-    val current: CurrentDomainModel
+data class Weather(
+    val location: Location,
+    val current: Current
 )
 
-data class LocationDomainModel(
+data class Location(
     val name: String,
     val region: String,
     val country: String,
@@ -13,13 +13,13 @@ data class LocationDomainModel(
     val localtime: String
 )
 
-data class CurrentDomainModel(
+data class Current(
     val lastUpdatedEpoch: Long,
     val lastUpdated: String,
     val tempC: Double,
     val tempF: Double,
     val isDay: Int,
-    val condition: ConditionDomainModel,
+    val condition: Condition,
     val windMph: Double,
     val windKph: Double,
     val windDegree: Int,
@@ -34,7 +34,7 @@ data class CurrentDomainModel(
     val feelsLikeF: Double,
 )
 
-data class ConditionDomainModel(
+data class Condition(
     val text: String,
     val icon: String,
     val code: Int
