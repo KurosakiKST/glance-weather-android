@@ -32,10 +32,10 @@ class WeatherVM @Inject constructor(
     private val _locationState = MutableStateFlow<ViewState<List<CityUi>>>(ViewState.NoData)
     val locationState: StateFlow<ViewState<List<CityUi>>> = _locationState
 
-    fun getCurrentWeather(apiKey: String, city: String) {
+    fun getCurrentWeather(city: String) {
         _weatherState.value = ViewState.Loading
         viewModelScope.launch {
-            when (val result = weatherUseCase.getCurrentWeather(apiKey, city)) {
+            when (val result = weatherUseCase.getCurrentWeather(city)) {
                 is Result.Success -> {
                     _weatherState.value = ViewState.Success(
                         result.data.toUi()
@@ -49,10 +49,10 @@ class WeatherVM @Inject constructor(
         }
     }
 
-    fun getForecastedWeather(apiKey: String, city: String, days: Int) {
+    fun getForecastedWeather(city: String, days: Int) {
         _forecastState.value = ViewState.Loading
         viewModelScope.launch {
-            when (val result = weatherUseCase.getForecastedWeather(apiKey, city, days)) {
+            when (val result = weatherUseCase.getForecastedWeather(city, days)) {
                 is Result.Success -> {
                     Log.i("WeatherVM", "Success: ${result.data}")
                     _forecastState.value = ViewState.Success(
