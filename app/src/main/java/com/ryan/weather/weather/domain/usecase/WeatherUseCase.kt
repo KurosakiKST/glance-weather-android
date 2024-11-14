@@ -11,17 +11,15 @@ class WeatherUseCase @Inject constructor(
     private val weatherRepository: WeatherRepository
 ) {
     suspend fun getCurrentWeather(
-        apiKey: String,
         city: String
     ): Result<Weather, NetworkError> {
-        return weatherRepository.getCurrentWeather(apiKey, city)
+        return weatherRepository.getCurrentWeather(city)
     }
 
     suspend fun getForecastedWeather(
-        apiKey: String,
         city: String,
         days: Int
     ): Result<Forecast, NetworkError> {
-        return weatherRepository.getForeCastWeather(apiKey, city, days)
+        return weatherRepository.getForeCastWeather(city, days)
     }
 }
