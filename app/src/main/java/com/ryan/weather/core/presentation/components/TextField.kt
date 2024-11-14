@@ -2,12 +2,9 @@ package com.ryan.weather.core.presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -15,7 +12,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
@@ -24,7 +20,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.ryan.weather.home.presentation.model.CityUIModel
+import com.ryan.weather.weather.presentation.models.CityUi
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -33,8 +29,8 @@ fun SearchTextField(
     value: String,
     onValueChange: (String) -> Unit,
     onSearch: () -> Unit,
-    cities: List<CityUIModel>?,
-    onCitySelected: (CityUIModel) -> Unit,
+    cities: List<CityUi>?,
+    onCitySelected: (CityUi) -> Unit,
     onClearCityList: () -> Unit
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -44,6 +40,7 @@ fun SearchTextField(
         TextField(
             value = value,
             onValueChange = onValueChange,
+            maxLines = 1,
             modifier = modifier
                 .onFocusChanged {
                     isFocused = it.isFocused
@@ -109,7 +106,7 @@ fun SearchTextFieldPreview() {
         value = searchText,
         onValueChange = { searchText = it },
         cities = listOf(
-            CityUIModel(
+            CityUi(
                 id = 1,
                 name = "City 1",
                 region = "Region 1",
@@ -118,7 +115,7 @@ fun SearchTextFieldPreview() {
                 longitude = 2.0,
                 url = "url1"
             ),
-            CityUIModel(
+            CityUi(
                 id = 1,
                 name = "City 1",
                 region = "Region 1",
