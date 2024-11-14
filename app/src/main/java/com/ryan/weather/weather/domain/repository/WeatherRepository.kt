@@ -1,16 +1,16 @@
 package com.ryan.weather.weather.domain.repository
 
-import com.ryan.weather.weather.domain.model.ForecastDomainModel
-import com.ryan.weather.weather.domain.model.WeatherDomainModel
-import com.ryan.weather.core.domain.util.Result
-import com.ryan.weather.core.domain.util.NetworkError
+import com.ryan.weather.weather.domain.model.Forecast
+import com.ryan.weather.weather.domain.model.Weather
+import com.ryan.weather.core.domain.utils.Result
+import com.ryan.weather.core.domain.utils.NetworkError
 
 interface WeatherRepository {
-    suspend fun getCurrentWeather(apiKey: String, city: String): Result<WeatherDomainModel, NetworkError>
+    suspend fun getCurrentWeather(apiKey: String, city: String): Result<Weather, NetworkError>
 
     suspend fun getForeCastWeather(
         apiKey: String,
         city: String,
         days: Int
-    ): Result<ForecastDomainModel, NetworkError>
+    ): Result<Forecast, NetworkError>
 }

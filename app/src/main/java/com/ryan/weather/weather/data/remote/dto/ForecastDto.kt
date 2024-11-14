@@ -1,24 +1,24 @@
-package com.ryan.weather.weather.data.responsemodel
+package com.ryan.weather.weather.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class ForecastResponseModel(
-    @SerializedName("location") val location: LocationResponseModel,
-    @SerializedName("current") val current: CurrentResponseModel,
-    @SerializedName("forecast") val forecast: ForecastDaysResponseModel
+data class ForecastDto(
+    @SerializedName("location") val location: LocationDto,
+    @SerializedName("current") val current: CurrentDto,
+    @SerializedName("forecast") val forecast: ForecastDaysDto
 )
 
-data class ForecastDaysResponseModel(
-    @SerializedName("forecastday") val forecastDays: List<ForecastDayResponseModel>
+data class ForecastDaysDto(
+    @SerializedName("forecastday") val forecastDays: List<ForecastDayDto>
 )
 
-data class ForecastDayResponseModel(
+data class ForecastDayDto(
     @SerializedName("date") val date: String,
     @SerializedName("date_epoch") val dateEpoch: Long,
-    @SerializedName("day") val day: DayForecastResponseModel
+    @SerializedName("day") val day: DayForecastDto
 )
 
-data class DayForecastResponseModel(
+data class DayForecastDto(
     @SerializedName("maxtemp_c") val maxTempC: Double,
     @SerializedName("maxtemp_f") val maxTempF: Double,
     @SerializedName("mintemp_c") val minTempC: Double,
@@ -37,6 +37,6 @@ data class DayForecastResponseModel(
     @SerializedName("daily_chance_of_rain") val dailyChanceOfRain: Int,
     @SerializedName("daily_will_it_snow") val dailyWillItSnow: Int,
     @SerializedName("daily_chance_of_snow") val dailyChanceOfSnow: Int,
-    @SerializedName("condition") val condition: ConditionResponseModel,
+    @SerializedName("condition") val condition: ConditionDto,
     @SerializedName("uv") val uv: Double
 )

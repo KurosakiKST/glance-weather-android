@@ -1,10 +1,10 @@
 package com.ryan.weather.weather.domain.usecase
 
-import com.ryan.weather.weather.domain.model.ForecastDomainModel
-import com.ryan.weather.weather.domain.model.WeatherDomainModel
+import com.ryan.weather.weather.domain.model.Forecast
+import com.ryan.weather.weather.domain.model.Weather
 import com.ryan.weather.weather.domain.repository.WeatherRepository
-import com.ryan.weather.core.domain.util.Result
-import com.ryan.weather.core.domain.util.NetworkError
+import com.ryan.weather.core.domain.utils.Result
+import com.ryan.weather.core.domain.utils.NetworkError
 import javax.inject.Inject
 
 class WeatherUseCase @Inject constructor(
@@ -13,7 +13,7 @@ class WeatherUseCase @Inject constructor(
     suspend fun getCurrentWeather(
         apiKey: String,
         city: String
-    ): Result<WeatherDomainModel, NetworkError> {
+    ): Result<Weather, NetworkError> {
         return weatherRepository.getCurrentWeather(apiKey, city)
     }
 
@@ -21,7 +21,7 @@ class WeatherUseCase @Inject constructor(
         apiKey: String,
         city: String,
         days: Int
-    ): Result<ForecastDomainModel, NetworkError> {
+    ): Result<Forecast, NetworkError> {
         return weatherRepository.getForeCastWeather(apiKey, city, days)
     }
 }

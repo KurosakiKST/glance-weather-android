@@ -1,11 +1,11 @@
 package com.ryan.weather.weather.data.repoImpl
 
 import com.ryan.weather.weather.data.local.database.mapper.WeatherEntityMapper.toEntity
-import com.ryan.weather.weather.domain.model.ForecastDomainModel
-import com.ryan.weather.weather.domain.model.WeatherDomainModel
+import com.ryan.weather.weather.domain.model.Forecast
+import com.ryan.weather.weather.domain.model.Weather
 import com.ryan.weather.weather.domain.repository.WeatherRepository
-import com.ryan.weather.core.domain.util.Result
-import com.ryan.weather.core.domain.util.NetworkError
+import com.ryan.weather.core.domain.utils.Result
+import com.ryan.weather.core.domain.utils.NetworkError
 import com.ryan.weather.weather.data.local.datasource.WeatherLocalDataSource
 import com.ryan.weather.weather.data.remote.WeatherRemoteDataSource
 import javax.inject.Inject
@@ -20,7 +20,7 @@ class WeatherRepoImpl @Inject constructor(
     override suspend fun getCurrentWeather(
         apiKey: String,
         city: String
-    ): Result<WeatherDomainModel, NetworkError> {
+    ): Result<Weather, NetworkError> {
         return try {
             val localData = weatherLocalDataSource.getCurrentWeather(apiKey, city)
             if (localData is Result.Success) {
@@ -41,7 +41,7 @@ class WeatherRepoImpl @Inject constructor(
         apiKey: String,
         city: String,
         days: Int
-    ): Result<ForecastDomainModel, NetworkError> {
+    ): Result<Forecast, NetworkError> {
         return try {
             val localData = weatherLocalDataSource.getForecastWeather(apiKey, city, days)
             if (localData is Result.Success) {

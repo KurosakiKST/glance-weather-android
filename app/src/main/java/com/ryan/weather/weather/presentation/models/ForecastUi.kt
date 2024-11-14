@@ -1,7 +1,7 @@
 package com.ryan.weather.weather.presentation.models
 
-data class ForecastUIModel(
+data class ForecastUi(
     val location: LocationUi,
-    val current: CurrentUIModel,
+    val current: CurrentUi,
     val forecast: ForecastDaysUi
 )

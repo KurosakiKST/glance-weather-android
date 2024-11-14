@@ -4,10 +4,8 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ryan.weather.core.presentation.utils.ViewState
-import com.ryan.weather.core.domain.util.Result
-import com.ryan.weather.core.domain.util.NetworkError
-import com.ryan.weather.weather.data.mappers.LocationUIMapper
-import com.ryan.weather.weather.data.mappers.WeatherUIMapper
+import com.ryan.weather.core.domain.utils.Result
+import com.ryan.weather.weather.data.mappers.toUi
 import com.ryan.weather.weather.domain.usecase.LocationUseCase
 import com.ryan.weather.weather.domain.usecase.WeatherUseCase
 import com.ryan.weather.weather.presentation.models.CityUi
@@ -39,12 +37,13 @@ class WeatherVM @Inject constructor(
         viewModelScope.launch {
             when (val result = weatherUseCase.getCurrentWeather(apiKey, city)) {
                 is Result.Success -> {
-                    Log.i("WeatherVM", "Success: ${result.data}")
-                    _weatherState.value = ViewState.Success(WeatherUIMapper.mapToUiModel(result.data))
+                    _weatherState.value = ViewState.Success(
+                        result.data.toUi()
+                    )
                 }
+
                 is Result.Error -> {
                     _weatherState.value = ViewState.Error(result.error)
-                    Log.e("WeatherVM", "Error: ${result.error}")
                 }
             }
         }
@@ -57,9 +56,12 @@ class WeatherVM @Inject constructor(
                 is Result.Success -> {
                     Log.i("WeatherVM", "Success: ${result.data}")
                     _forecastState.value = ViewState.Success(
-                        WeatherUIMapper.mapToUiModel(result.data.forecast).forecastDays
+                        result.data.forecast.forecastDays.map {
+                            it.toUi()
+                        }
                     )
                 }
+
                 is Result.Error -> {
                     _forecastState.value = ViewState.Error(result.error)
                     Log.e("WeatherVM", "Error: ${result.error}")
@@ -68,14 +70,17 @@ class WeatherVM @Inject constructor(
         }
     }
 
-    fun getCities(apiKey: String, city: String) {
+    fun getCities(city: String) {
         _locationState.value = ViewState.Loading
         viewModelScope.launch {
-            when (val result = locationUseCase.getCities(apiKey, city)) {
+            when (val result = locationUseCase.getCities(city)) {
                 is Result.Success -> {
                     Log.i("WeatherVM", "Success: ${result.data}")
-                    _locationState.value = ViewState.Success(LocationUIMapper.mapToUiModel(result.data))
+                    _locationState.value = ViewState.Success(result.data.map {
+                        it.toUi()
+                    })
                 }
+
                 is Result.Error -> {
                     _locationState.value = ViewState.Error(result.error)
                     Log.e("WeatherVM", "Error: ${result.error}")

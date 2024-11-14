@@ -1,22 +1,22 @@
 package com.ryan.weather.weather.domain.model
 
-data class ForecastDomainModel(
-    val location: LocationDomainModel,
-    val current: CurrentDomainModel,
-    val forecast: ForecastDaysDomainModel
+data class Forecast(
+    val location: Location,
+    val current: Current,
+    val forecast: ForecastDays
 )
 
-data class ForecastDaysDomainModel(
-    val forecastDays: List<ForecastDayDomainModel>
+data class ForecastDays(
+    val forecastDays: List<ForecastDay>
 )
 
-data class ForecastDayDomainModel(
+data class ForecastDay(
     val date: String,
     val dateEpoch: Long,
-    val day: DayForecastDomainModel
+    val day: DayForecast
 )
 
-data class DayForecastDomainModel(
+data class DayForecast(
     val maxTempC: Double,
     val maxTempF: Double,
     val minTempC: Double,
@@ -35,6 +35,6 @@ data class DayForecastDomainModel(
     val dailyChanceOfRain: Int,
     val dailyWillItSnow: Int,
     val dailyChanceOfSnow: Int,
-    val condition: ConditionDomainModel,
+    val condition: Condition,
     val uv: Double
 )
