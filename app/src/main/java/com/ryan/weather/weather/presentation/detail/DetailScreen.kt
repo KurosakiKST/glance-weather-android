@@ -1,4 +1,4 @@
-package com.ryan.weather.weather.presentation.home
+package com.ryan.weather.weather.presentation.detail
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -32,20 +32,27 @@ import androidx.navigation.compose.rememberNavController
 import com.ryan.weather.core.presentation.components.BackgroundImageContainer
 import com.ryan.weather.core.presentation.components.ProgressDialog
 import com.ryan.weather.core.presentation.components.SearchTextField
+import com.ryan.weather.core.presentation.components.TextH6
+import com.ryan.weather.weather.presentation.detail.components.CurrentWeatherDetailsView
+import com.ryan.weather.weather.presentation.detail.components.ForecastDaysView
+import com.ryan.weather.weather.presentation.models.CityUi
+import com.ryan.weather.weather.presentation.models.ForecastDayUi
+import com.ryan.weather.weather.presentation.models.WeatherUi
 import com.ryan.weather.core.presentation.utils.ViewState
 import com.ryan.weather.core.presentation.utils.toString
-import com.ryan.weather.weather.presentation.models.CityUi
 import kotlinx.coroutines.launch
 
 @Composable
-fun HomeScreen(
+fun DetailScreen(
     navController: NavHostController,
-    viewModel: HomeVM = hiltViewModel()
+    viewModel: DetailVM = hiltViewModel()
 ) {
     val scope = rememberCoroutineScope()
 
     val context = LocalContext.current
 
+    var currentWeather by remember { mutableStateOf<WeatherUi?>(null) }
+    var forecastDays by remember { mutableStateOf<List<ForecastDayUi>?>(emptyList()) }
     var cities by remember { mutableStateOf<List<CityUi>?>(emptyList()) }
 
     var searchCity by remember { mutableStateOf("") }
@@ -81,15 +88,86 @@ fun HomeScreen(
         }
     }
 
-//    LaunchedEffect(key1 = searchCity) {
-//        if (searchCity.length > 3) {
-//            viewModel.getCities(searchCity)
-//        } else {
-//            cities = null
-//        }
-//    }
+    LaunchedEffect(key1 = searchCity) {
+        if (searchCity.length > 2) {
+            viewModel.getCities(searchCity)
+        } else {
+            cities = null
+        }
+    }
 
     LaunchedEffect(key1 = Unit) {
+        scope.launch {
+            viewModel.weatherState.collect {
+                when (it) {
+
+                    is ViewState.Error -> {
+                        showLoading = false
+                        showOfflineData = true
+                        alertTitle = "Error"
+                        alertMsg = it.error.toString(context)
+                        showAlert = true
+                    }
+
+                    ViewState.Loading -> {
+                        showLoading = true
+                        showOfflineData = false
+                    }
+
+                    ViewState.NoData -> {
+                        showLoading = false
+                        showOfflineData = false
+                    }
+
+                    is ViewState.Success -> {
+                        showLoading = false
+                        showOfflineData = false
+                        currentWeather = it.data
+                    }
+
+                    is ViewState.Offline -> {
+                        showLoading = false
+                        currentWeather = it.data
+                        showOfflineData = true
+                    }
+                }
+            }
+        }
+        scope.launch {
+            viewModel.forecastState.collect {
+                when (it) {
+                    is ViewState.Error -> {
+                        showLoading = false
+                        showOfflineData = true
+                        alertTitle = "Error"
+                        alertMsg = it.error.toString(context)
+                        showAlert = true
+                    }
+
+                    ViewState.Loading -> {
+                        showLoading = true
+                        showOfflineData = false
+                    }
+
+                    ViewState.NoData -> {
+                        showLoading = false
+                        showOfflineData = false
+                    }
+
+                    is ViewState.Success -> {
+                        showLoading = false
+                        showOfflineData = false
+                        forecastDays = it.data
+                    }
+
+                    is ViewState.Offline -> {
+                        showLoading = false
+                        forecastDays = it.data
+                        showOfflineData = true
+                    }
+                }
+            }
+        }
         scope.launch {
 
             viewModel.locationState.collect {
@@ -147,14 +225,18 @@ fun HomeScreen(
                         searchCity = it
                     },
                     onSearch = {
-                        if (searchCity.length > 3) {
-                            viewModel.getCities(searchCity)
-                        } else {
-                            cities = null
-                        }
+                        viewModel.getCurrentWeather(
+                            searchCity
+                        )
+                        viewModel.getForecastedWeather(
+                            searchCity,
+                            5
+                        )
                     },
                     onCitySelected = { city ->
                         searchCity = city.name
+                        viewModel.getCurrentWeather(searchCity)
+                        viewModel.getForecastedWeather(searchCity, 5)
                         searchCity = ""
                         cities = null
                     },
@@ -172,8 +254,18 @@ fun HomeScreen(
                     .padding(8.dp)
                     .verticalScroll(rememberScrollState())
             ) {
-                Column {
-
+                if (showLoading) {
+                    showLoading = true
+                } else if (showOfflineData) {
+                    TextH6(
+                        text = "Offline Data",
+                        modifier = Modifier.padding(8.dp)
+                    )
+                    currentWeather?.let { CurrentWeatherDetailsView(it) }
+                    forecastDays?.let { ForecastDaysView(it) }
+                } else {
+                    currentWeather?.let { CurrentWeatherDetailsView(it) }
+                    forecastDays?.let { ForecastDaysView(it) }
                 }
             }
         }
@@ -182,8 +274,8 @@ fun HomeScreen(
 
 @Preview(showBackground = true)
 @Composable
-fun HomeScreenPreview() {
-    HomeScreen(
+fun DetailScreenPreview() {
+    DetailScreen(
         navController = rememberNavController(),
         viewModel = hiltViewModel()
     )

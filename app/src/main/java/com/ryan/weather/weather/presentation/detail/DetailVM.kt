@@ -1,4 +1,4 @@
-package com.ryan.weather.weather.presentation.home
+package com.ryan.weather.weather.presentation.detail
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class WeatherVM @Inject constructor(
+class DetailVM @Inject constructor(
     private val weatherUseCase: WeatherUseCase,
     private val locationUseCase: LocationUseCase
 ) : ViewModel() {
