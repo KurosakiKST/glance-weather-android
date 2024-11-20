@@ -1,4 +1,4 @@
-package com.ryan.weather.weather.presentation.home.components
+package com.ryan.weather.weather.presentation.detail.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
