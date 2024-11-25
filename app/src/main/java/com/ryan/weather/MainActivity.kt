@@ -9,13 +9,17 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.ryan.weather.core.navigation.Route
-import com.ryan.weather.ui.theme.WeatherAppTheme
+import com.ryan.weather.core.presentation.theme.WeatherAppTheme
+import com.ryan.weather.forecast.navigation.ForecastModuleInitializer
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        ForecastModuleInitializer.registerDestinations()
+
         enableEdgeToEdge()
         setContent {
             WeatherAppTheme {
@@ -23,7 +27,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Route()
+                    Route() // Start navigation
                 }
             }
         }
