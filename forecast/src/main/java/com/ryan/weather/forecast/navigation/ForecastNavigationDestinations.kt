@@ -6,14 +6,14 @@ import com.ryan.weather.core.navigation.ComposableNavigationDestination
 import com.ryan.weather.core.navigation.Routes
 import com.ryan.weather.forecast.presentation.detail.DetailScreen
 import com.ryan.weather.forecast.presentation.home.HomeScreen
-import com.ryan.weather.forecast.presentation.splash.SplashScreen
+import com.ryan.weather.forecast.presentation.welcome.WelcomeScreen
 
-object SplashDestination : ComposableNavigationDestination {
-    override val route = Routes.SplashScreen.route
+object WelcomeDestination : ComposableNavigationDestination {
+    override val route = Routes.WelcomeScreen.route
 
     @Composable
     override fun Content(navController: NavHostController) {
-        SplashScreen(navController)
+        WelcomeScreen(navController)
     }
 }
 

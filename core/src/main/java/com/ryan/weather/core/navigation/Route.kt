@@ -9,8 +9,8 @@ import androidx.navigation.compose.rememberNavController
 fun Route() {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = Routes.SplashScreen.route) {
-        NavigationRegistry.getDestination(Routes.SplashScreen.route)?.let { destination ->
+    NavHost(navController = navController, startDestination = Routes.WelcomeScreen.route) {
+        NavigationRegistry.getDestination(Routes.WelcomeScreen.route)?.let { destination ->
             composable(destination.route) {
                 destination.Content(navController)
             }
@@ -30,7 +30,7 @@ fun Route() {
     }
 }
 sealed class Routes(val route: String) {
-    object SplashScreen : Routes("splashScreen")
+    object WelcomeScreen : Routes("welcomeScreen")
 
     object HomeScreen : Routes("homeScreen")
 

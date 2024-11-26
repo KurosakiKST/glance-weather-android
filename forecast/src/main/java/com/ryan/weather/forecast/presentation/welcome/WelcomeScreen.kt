@@ -1,4 +1,4 @@
-package com.ryan.weather.forecast.presentation.splash
+package com.ryan.weather.forecast.presentation.welcome
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -26,7 +26,7 @@ import com.ryan.weather.core.presentation.components.TextH5
 import com.ryan.weather.forecast.R
 
 @Composable
-fun SplashScreen(navController: NavHostController) {
+fun WelcomeScreen(navController: NavHostController) {
     BackgroundImageContainer {
         Box(
             modifier = Modifier
@@ -81,5 +81,5 @@ fun SplashScreen(navController: NavHostController) {
 @Preview(showBackground = true)
 @Composable
 fun SplashScreenPreview() {
-    SplashScreen(rememberNavController())
+    WelcomeScreen(rememberNavController())
 }
