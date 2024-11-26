@@ -1,8 +1,18 @@
 {
     "logs": [
         {
-            "outputFile": "com.ryan.weather.core.test.core-mergeDebugAndroidTestResources-63:/values-v18/values-v18.xml",
+            "outputFile": "com.ryan.weather.core.test.core-mergeDebugAndroidTestResources-76:/values-v18/values-v18.xml",
             "map": [
+                {
+                    "source": "/Users/kyawsithumoeoo/.gradle/caches/transforms-4/566003021dd1124315ca9ea9f2af5c51/transformed/appcompat-1.6.1/res/values-v18/values-v18.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "48",
+                        "endOffsets": "99"
+                    }
+                },
                 {
                     "source": "/Users/kyawsithumoeoo/.gradle/caches/transforms-4/bc256170e9cdb2e6b717a1438f393703/transformed/core-1.6.1/res/values-v18/values.xml",
                     "from": {
@@ -14,12 +24,12 @@
                         "endOffsets": "561,975"
                     },
                     "to": {
-                        "startLines": "2,10",
+                        "startLines": "3,11",
                         "startColumns": "4,4",
-                        "startOffsets": "55,475",
-                        "endLines": "9,17",
+                        "startOffsets": "104,524",
+                        "endLines": "10,18",
                         "endColumns": "8,8",
-                        "endOffsets": "470,888"
+                        "endOffsets": "519,937"
                     }
                 }
             ]

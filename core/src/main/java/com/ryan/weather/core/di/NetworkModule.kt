@@ -1,17 +1,11 @@
-package com.ryan.weather.di
+package com.ryan.weather.core.di
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.google.gson.ExclusionStrategy
 import com.google.gson.FieldAttributes
 import com.google.gson.GsonBuilder
-<<<<<<<< HEAD:core/src/main/java/com/ryan/weather/core/di/NetworkModule.kt
 import com.ryan.weather.core.presentation.components.NetWorkService
-========
-import com.ryan.weather.weather.data.remote.LocationAPIService
-import com.ryan.weather.weather.data.remote.WeatherAPIService
-import com.ryan.weather.core.presentation.utils.NetWorkService
->>>>>>>> main:app/src/main/java/com/ryan/weather/di/NetworkModule.kt
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
