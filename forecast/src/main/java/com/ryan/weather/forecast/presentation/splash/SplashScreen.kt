@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:forecast/src/main/java/com/ryan/weather/forecast/presentation/splash/SplashScreen.kt
 package com.ryan.weather.forecast.presentation.splash
+========
+package com.ryan.weather.weather.presentation.splash
+>>>>>>>> main:app/src/main/java/com/ryan/weather/weather/presentation/splash/SplashScreen.kt
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -18,6 +22,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+<<<<<<<< HEAD:forecast/src/main/java/com/ryan/weather/forecast/presentation/splash/SplashScreen.kt
+========
+import com.ryan.weather.R
+>>>>>>>> main:app/src/main/java/com/ryan/weather/weather/presentation/splash/SplashScreen.kt
 import com.ryan.weather.core.navigation.Routes
 import com.ryan.weather.core.presentation.components.BackgroundImageContainer
 import com.ryan.weather.core.presentation.components.PrimaryLargeButton

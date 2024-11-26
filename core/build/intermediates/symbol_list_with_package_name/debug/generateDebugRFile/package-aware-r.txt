@@ -1,0 +1,9 @@
+com.ryan.weather.core
+drawable bg_image
+font urbanist
+string error_no_cached_data
+string error_no_internet
+string error_request_timeout
+string error_serialization
+string error_too_many_requests
+string error_unknown

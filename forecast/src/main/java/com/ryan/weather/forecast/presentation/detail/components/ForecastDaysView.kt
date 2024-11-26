@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:forecast/src/main/java/com/ryan/weather/forecast/presentation/detail/components/ForecastDaysView.kt
 package com.ryan.weather.forecast.presentation.detail.components
+========
+package com.ryan.weather.weather.presentation.home.components
+>>>>>>>> main:app/src/main/java/com/ryan/weather/weather/presentation/home/components/ForecastDaysView.kt
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -19,7 +23,11 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.ryan.weather.core.presentation.components.TextBody1
 import com.ryan.weather.core.presentation.components.TextBody2
+<<<<<<<< HEAD:forecast/src/main/java/com/ryan/weather/forecast/presentation/detail/components/ForecastDaysView.kt
 import com.ryan.weather.forecast.presentation.models.ForecastDayUi
+========
+import com.ryan.weather.weather.presentation.models.ForecastDayUi
+>>>>>>>> main:app/src/main/java/com/ryan/weather/weather/presentation/home/components/ForecastDaysView.kt
 
 @Composable
 fun ForecastDaysView(forecastDays: List<ForecastDayUi>) {

@@ -1,4 +1,4 @@
-package com.ryan.weather.core.di
+package com.ryan.weather.di
 
 import android.content.Context
 import dagger.Module

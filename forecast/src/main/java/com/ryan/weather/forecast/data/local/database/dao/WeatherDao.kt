@@ -1,5 +1,11 @@
+<<<<<<<< HEAD:forecast/src/main/java/com/ryan/weather/forecast/data/local/database/dao/WeatherDao.kt
 package com.ryan.weather.forecast.data.local.database.dao
 
+========
+package com.ryan.weather.weather.data.local.database.dao
+
+import com.ryan.weather.weather.data.local.database.entity.weather.CurrentWeatherEntity
+>>>>>>>> main:app/src/main/java/com/ryan/weather/weather/data/local/database/dao/WeatherDao.kt
 import androidx.room.Dao
 import androidx.room.Embedded
 import androidx.room.Insert
@@ -7,11 +13,18 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Relation
 import androidx.room.Transaction
+<<<<<<<< HEAD:forecast/src/main/java/com/ryan/weather/forecast/data/local/database/dao/WeatherDao.kt
 import com.ryan.weather.forecast.data.local.database.entity.weather.CurrentWeatherEntity
 import com.ryan.weather.forecast.data.local.database.entity.weather.ForecastDayEntity
 import com.ryan.weather.forecast.data.local.database.entity.weather.ForecastWeatherEntity
 import com.ryan.weather.forecast.data.local.database.entity.weather.ForecastWeatherWithDays
 import com.ryan.weather.forecast.data.local.database.entity.weather.LocationWeatherEntity
+========
+import com.ryan.weather.weather.data.local.database.entity.weather.ForecastDayEntity
+import com.ryan.weather.weather.data.local.database.entity.weather.ForecastWeatherEntity
+import com.ryan.weather.weather.data.local.database.entity.weather.ForecastWeatherWithDays
+import com.ryan.weather.weather.data.local.database.entity.weather.LocationWeatherEntity
+>>>>>>>> main:app/src/main/java/com/ryan/weather/weather/data/local/database/dao/WeatherDao.kt
 
 @Dao
 interface WeatherDao {

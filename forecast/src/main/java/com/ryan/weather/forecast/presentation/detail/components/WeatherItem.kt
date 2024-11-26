@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:forecast/src/main/java/com/ryan/weather/forecast/presentation/detail/components/WeatherItem.kt
 package com.ryan.weather.forecast.presentation.detail.components
+========
+package com.ryan.weather.weather.presentation.home.components
+>>>>>>>> main:app/src/main/java/com/ryan/weather/weather/presentation/home/components/WeatherItem.kt
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding

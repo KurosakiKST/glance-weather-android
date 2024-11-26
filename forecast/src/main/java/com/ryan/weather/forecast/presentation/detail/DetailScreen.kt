@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:forecast/src/main/java/com/ryan/weather/forecast/presentation/detail/DetailScreen.kt
 package com.ryan.weather.forecast.presentation.detail
+========
+package com.ryan.weather.weather.presentation.home
+>>>>>>>> main:app/src/main/java/com/ryan/weather/weather/presentation/home/HomeScreen.kt
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -32,6 +36,7 @@ import androidx.navigation.compose.rememberNavController
 import com.ryan.weather.core.presentation.components.BackgroundImageContainer
 import com.ryan.weather.core.presentation.components.ProgressDialog
 import com.ryan.weather.core.presentation.components.TextH6
+<<<<<<<< HEAD:forecast/src/main/java/com/ryan/weather/forecast/presentation/detail/DetailScreen.kt
 import com.ryan.weather.core.presentation.utils.ViewState
 import com.ryan.weather.core.presentation.utils.toString
 import com.ryan.weather.forecast.presentation.detail.components.CurrentWeatherDetailsView
@@ -40,6 +45,16 @@ import com.ryan.weather.forecast.presentation.detail.components.SearchTextField
 import com.ryan.weather.forecast.presentation.models.CityUi
 import com.ryan.weather.forecast.presentation.models.ForecastDayUi
 import com.ryan.weather.forecast.presentation.models.WeatherUi
+========
+import com.ryan.weather.weather.presentation.home.components.CurrentWeatherDetailsView
+import com.ryan.weather.weather.presentation.home.components.ForecastDaysView
+import com.ryan.weather.weather.presentation.models.CityUi
+import com.ryan.weather.weather.presentation.models.ForecastDayUi
+import com.ryan.weather.weather.presentation.models.WeatherUi
+import com.ryan.weather.core.presentation.utils.NetWorkService
+import com.ryan.weather.core.presentation.utils.ViewState
+import com.ryan.weather.core.presentation.utils.toString
+>>>>>>>> main:app/src/main/java/com/ryan/weather/weather/presentation/home/HomeScreen.kt
 import kotlinx.coroutines.launch
 
 @Composable

@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:forecast/src/main/java/com/ryan/weather/forecast/data/remote/dto/ForecastDto.kt
 package com.ryan.weather.forecast.data.remote.dto
+========
+package com.ryan.weather.weather.data.remote.dto
+>>>>>>>> main:app/src/main/java/com/ryan/weather/weather/data/remote/dto/ForecastDto.kt
 
 import com.google.gson.annotations.SerializedName
 

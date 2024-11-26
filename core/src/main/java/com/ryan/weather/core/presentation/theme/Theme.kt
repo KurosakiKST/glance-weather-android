@@ -1,4 +1,4 @@
-package com.ryan.weather.core.presentation.theme
+package com.ryan.weather.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

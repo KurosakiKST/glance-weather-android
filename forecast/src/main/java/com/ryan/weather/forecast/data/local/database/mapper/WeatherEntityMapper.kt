@@ -1,3 +1,4 @@
+<<<<<<<< HEAD:forecast/src/main/java/com/ryan/weather/forecast/data/local/database/mapper/WeatherEntityMapper.kt
 package com.ryan.weather.forecast.data.local.database.mapper
 
 import com.ryan.weather.forecast.data.local.database.dao.ForecastWithDays
@@ -16,6 +17,26 @@ import com.ryan.weather.forecast.domain.model.ForecastDay
 import com.ryan.weather.forecast.domain.model.ForecastDays
 import com.ryan.weather.forecast.domain.model.Location
 import com.ryan.weather.forecast.domain.model.Weather
+========
+package com.ryan.weather.weather.data.local.database.mapper
+
+import com.ryan.weather.weather.data.local.database.dao.ForecastWithDays
+import com.ryan.weather.weather.data.local.database.entity.weather.ConditionEntity
+import com.ryan.weather.weather.data.local.database.entity.weather.CurrentWeatherEntity
+import com.ryan.weather.weather.data.local.database.entity.weather.DayForecastEntity
+import com.ryan.weather.weather.data.local.database.entity.weather.ForecastDayEntity
+import com.ryan.weather.weather.data.local.database.entity.weather.ForecastWeatherEntity
+import com.ryan.weather.weather.data.local.database.entity.weather.ForecastWeatherWithDays
+import com.ryan.weather.weather.data.local.database.entity.weather.LocationWeatherEntity
+import com.ryan.weather.weather.domain.model.Condition
+import com.ryan.weather.weather.domain.model.Current
+import com.ryan.weather.weather.domain.model.DayForecast
+import com.ryan.weather.weather.domain.model.ForecastDay
+import com.ryan.weather.weather.domain.model.ForecastDays
+import com.ryan.weather.weather.domain.model.Forecast
+import com.ryan.weather.weather.domain.model.Location
+import com.ryan.weather.weather.domain.model.Weather
+>>>>>>>> main:app/src/main/java/com/ryan/weather/weather/data/local/database/mapper/WeatherEntityMapper.kt
 
 object WeatherEntityMapper {
 

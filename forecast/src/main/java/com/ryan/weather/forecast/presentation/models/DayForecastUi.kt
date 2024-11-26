@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:forecast/src/main/java/com/ryan/weather/forecast/presentation/models/DayForecastUi.kt
 package com.ryan.weather.forecast.presentation.models
+========
+package com.ryan.weather.weather.presentation.models
+>>>>>>>> main:app/src/main/java/com/ryan/weather/weather/presentation/models/DayForecastUi.kt
 
 data class DayForecastUi(
     val maxTempC: Double,

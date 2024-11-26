@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:forecast/src/main/java/com/ryan/weather/forecast/domain/model/Forecast.kt
 package com.ryan.weather.forecast.domain.model
+========
+package com.ryan.weather.weather.domain.model
+>>>>>>>> main:app/src/main/java/com/ryan/weather/weather/domain/model/Forecast.kt
 
 data class Forecast(
     val location: Location,

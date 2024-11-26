@@ -1,0 +1,30 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/kyawsithumoeoo/Projects/Learning/Jetpack Compose/weather-app/forecast/src/main/AndroidManifest.xml:2:1-12:12
+INJECTED from /Users/kyawsithumoeoo/Projects/Learning/Jetpack Compose/weather-app/forecast/src/main/AndroidManifest.xml:2:1-12:12
+	package
+		INJECTED from /Users/kyawsithumoeoo/Projects/Learning/Jetpack Compose/weather-app/forecast/src/main/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /Users/kyawsithumoeoo/Projects/Learning/Jetpack Compose/weather-app/forecast/src/main/AndroidManifest.xml:3:5-51
+	xmlns:android
+		ADDED from /Users/kyawsithumoeoo/Projects/Learning/Jetpack Compose/weather-app/forecast/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from /Users/kyawsithumoeoo/Projects/Learning/Jetpack Compose/weather-app/forecast/src/main/AndroidManifest.xml:5:5-67
+	android:name
+		ADDED from /Users/kyawsithumoeoo/Projects/Learning/Jetpack Compose/weather-app/forecast/src/main/AndroidManifest.xml:5:22-64
+application
+ADDED from /Users/kyawsithumoeoo/Projects/Learning/Jetpack Compose/weather-app/forecast/src/main/AndroidManifest.xml:7:5-10:44
+	android:supportsRtl
+		ADDED from /Users/kyawsithumoeoo/Projects/Learning/Jetpack Compose/weather-app/forecast/src/main/AndroidManifest.xml:9:9-35
+	tools:targetApi
+		ADDED from /Users/kyawsithumoeoo/Projects/Learning/Jetpack Compose/weather-app/forecast/src/main/AndroidManifest.xml:10:9-29
+	android:allowBackup
+		ADDED from /Users/kyawsithumoeoo/Projects/Learning/Jetpack Compose/weather-app/forecast/src/main/AndroidManifest.xml:8:9-35
+uses-sdk
+INJECTED from /Users/kyawsithumoeoo/Projects/Learning/Jetpack Compose/weather-app/forecast/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/kyawsithumoeoo/Projects/Learning/Jetpack Compose/weather-app/forecast/src/main/AndroidManifest.xml
+INJECTED from /Users/kyawsithumoeoo/Projects/Learning/Jetpack Compose/weather-app/forecast/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/kyawsithumoeoo/Projects/Learning/Jetpack Compose/weather-app/forecast/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/kyawsithumoeoo/Projects/Learning/Jetpack Compose/weather-app/forecast/src/main/AndroidManifest.xml

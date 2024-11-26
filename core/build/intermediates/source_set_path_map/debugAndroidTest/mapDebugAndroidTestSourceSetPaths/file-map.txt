@@ -1,0 +1,67 @@
+com.ryan.weather.core.test.core-material-ripple-release-0 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/0f2e1f9ebb4732cc346818d0980c1af0/transformed/material-ripple-release/res
+com.ryan.weather.core.test.core-ui-text-release-1 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/1313de52720339bddda49bafb3f3825e/transformed/ui-text-release/res
+com.ryan.weather.core.test.core-navigation-runtime-ktx-2.5.1-2 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/14034f0dcdb8a46feb699dfc4f8f8d33/transformed/navigation-runtime-ktx-2.5.1/res
+com.ryan.weather.core.test.core-sqlite-2.4.0-3 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/1456e8e8f527dbc5a611d8885ac40d3c/transformed/sqlite-2.4.0/res
+com.ryan.weather.core.test.core-appcompat-resources-1.6.1-4 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/15ac0b488d8f2396d8a38796454df509/transformed/appcompat-resources-1.6.1/res
+com.ryan.weather.core.test.core-play-services-measurement-api-21.5.1-5 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/15eeb35827f1db0cc3e1e324418db706/transformed/play-services-measurement-api-21.5.1/res
+com.ryan.weather.core.test.core-tracing-1.1.0-6 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/18606a66b10fdfd46bfb50a5dbd66cf1/transformed/tracing-1.1.0/res
+com.ryan.weather.core.test.core-core-runtime-2.2.0-7 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/22ba7e0b9c3d697d5d898cde2331d6fa/transformed/core-runtime-2.2.0/res
+com.ryan.weather.core.test.core-ui-util-release-8 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/24391e6b74025f16780dfc7a4231ff34/transformed/ui-util-release/res
+com.ryan.weather.core.test.core-lifecycle-viewmodel-release-9 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/27401d5549b773e97699e515c3c6f925/transformed/lifecycle-viewmodel-release/res
+com.ryan.weather.core.test.core-emoji2-1.3.0-10 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/2dd147edfb8d5cba2f0f1f2bb291d8e1/transformed/emoji2-1.3.0/res
+com.ryan.weather.core.test.core-runtime-saveable-release-11 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/35492a4284b864e60dd2d8c8d050527e/transformed/runtime-saveable-release/res
+com.ryan.weather.core.test.core-navigation-common-2.5.1-12 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/384f508481fb1db326758c2b7f0e3ca2/transformed/navigation-common-2.5.1/res
+com.ryan.weather.core.test.core-lifecycle-viewmodel-savedstate-2.8.4-13 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/39b3f6d600f33c71e969b68a20a8e4a4/transformed/lifecycle-viewmodel-savedstate-2.8.4/res
+com.ryan.weather.core.test.core-graphics-path-1.0.1-14 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/3b3ae67f09ba6c7793503fb2322f156e/transformed/graphics-path-1.0.1/res
+com.ryan.weather.core.test.core-lifecycle-livedata-core-ktx-2.8.4-15 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/3c2f55ec56fb16b2b2c8b1dee5d60d7e/transformed/lifecycle-livedata-core-ktx-2.8.4/res
+com.ryan.weather.core.test.core-play-services-basement-18.1.0-16 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/3e877430e2368bfebc1e5b46c7fa77bc/transformed/play-services-basement-18.1.0/res
+com.ryan.weather.core.test.core-navigation-common-ktx-2.5.1-17 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/3fc8763892d366b178bc709bbfb0fa36/transformed/navigation-common-ktx-2.5.1/res
+com.ryan.weather.core.test.core-foundation-release-18 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/3ffa4cfb12eac005196d3476027924a0/transformed/foundation-release/res
+com.ryan.weather.core.test.core-lifecycle-runtime-compose-release-19 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/4061e27ebe6b1b4603bd3b2ff0051fd0/transformed/lifecycle-runtime-compose-release/res
+com.ryan.weather.core.test.core-ui-graphics-release-20 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/547371d44dd442bb8b61c3bb785fcf84/transformed/ui-graphics-release/res
+com.ryan.weather.core.test.core-navigation-runtime-2.5.1-21 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/55fd9e62825f883c873b820b91c7f092/transformed/navigation-runtime-2.5.1/res
+com.ryan.weather.core.test.core-ui-unit-release-22 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/6a9c069e3487b6ee1c8865a94862b20f/transformed/ui-unit-release/res
+com.ryan.weather.core.test.core-ads-adservices-java-1.0.0-beta05-23 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/6b7f522514ac7b6c378888671f39f34b/transformed/ads-adservices-java-1.0.0-beta05/res
+com.ryan.weather.core.test.core-animation-release-24 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/6bbd6ddfa4b6d2dfeafef18513152447/transformed/animation-release/res
+com.ryan.weather.core.test.core-room-ktx-2.6.1-25 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/6f0fd73f98abf8d846590f905c2ab25c/transformed/room-ktx-2.6.1/res
+com.ryan.weather.core.test.core-material3-release-26 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/71409e4096a8d1a33f6ce43e5a38c6e7/transformed/material3-release/res
+com.ryan.weather.core.test.core-material-icons-core-release-27 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/750c0cc7d05797616cf00d60ede982da/transformed/material-icons-core-release/res
+com.ryan.weather.core.test.core-savedstate-1.2.1-28 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/75aa6e595254453a2f43ebe3b6120b91/transformed/savedstate-1.2.1/res
+com.ryan.weather.core.test.core-animation-core-release-29 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/7ba4ff28185c02f2f6ae76eb7b925ea4/transformed/animation-core-release/res
+com.ryan.weather.core.test.core-lifecycle-viewmodel-ktx-2.8.4-30 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/7ed3c55e6e2717fa9d1e24b121b62bed/transformed/lifecycle-viewmodel-ktx-2.8.4/res
+com.ryan.weather.core.test.core-hilt-navigation-1.1.0-31 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/89b2d3478dd23d392ca6bef36c9dc5e6/transformed/hilt-navigation-1.1.0/res
+com.ryan.weather.core.test.core-fragment-1.5.1-32 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/8f2c94abc361799ff1ba00f5d2d543f7/transformed/fragment-1.5.1/res
+com.ryan.weather.core.test.core-startup-runtime-1.1.1-33 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/90057a81c04bdbac6b4a67bef891a0d1/transformed/startup-runtime-1.1.1/res
+com.ryan.weather.core.test.core-activity-1.9.1-34 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/99d16db1bfe4be896245252808a47452/transformed/activity-1.9.1/res
+com.ryan.weather.core.test.core-firebase-common-20.4.2-35 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/9b1b6754ed34534e74248b027317c2d6/transformed/firebase-common-20.4.2/res
+com.ryan.weather.core.test.core-annotation-experimental-1.4.1-36 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/9d515d949aceef2e6172e9dda1e4653d/transformed/annotation-experimental-1.4.1/res
+com.ryan.weather.core.test.core-lifecycle-livedata-2.8.4-37 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/9e747a586e94397833f7f314d8c14d84/transformed/lifecycle-livedata-2.8.4/res
+com.ryan.weather.core.test.core-profileinstaller-1.3.1-38 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/a084e2f2d2be3e607fb6a185c1676b4e/transformed/profileinstaller-1.3.1/res
+com.ryan.weather.core.test.core-ui-tooling-preview-release-39 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/a27e17543da83f1ad2f5c24774b3bc72/transformed/ui-tooling-preview-release/res
+com.ryan.weather.core.test.core-navigation-compose-2.5.1-40 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/a34c05338c9e1f44ec3b8cdab61cd380/transformed/navigation-compose-2.5.1/res
+com.ryan.weather.core.test.core-ui-geometry-release-41 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/b06b7df059a979505af350a18ddebf13/transformed/ui-geometry-release/res
+com.ryan.weather.core.test.core-lifecycle-runtime-release-42 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/b59241426269d0d6c4090426e659d4ef/transformed/lifecycle-runtime-release/res
+com.ryan.weather.core.test.core-core-1.6.1-43 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/bc256170e9cdb2e6b717a1438f393703/transformed/core-1.6.1/res
+com.ryan.weather.core.test.core-hilt-navigation-compose-1.1.0-44 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/bd523d488598189cdae8ee83f739ffe8/transformed/hilt-navigation-compose-1.1.0/res
+com.ryan.weather.core.test.core-room-runtime-2.6.1-45 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/c5de018482ed69ef7efb1f032ec8c37f/transformed/room-runtime-2.6.1/res
+com.ryan.weather.core.test.core-core-ktx-1.13.1-46 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/c98dab07b4f46e63187f38023eab63a8/transformed/core-ktx-1.13.1/res
+com.ryan.weather.core.test.core-lifecycle-runtime-ktx-release-47 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/ca6b28d8694732ff914c80a7d4da78d5/transformed/lifecycle-runtime-ktx-release/res
+com.ryan.weather.core.test.core-ui-release-48 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/d64253a6147a0af766bf71cdb6e9f4ae/transformed/ui-release/res
+com.ryan.weather.core.test.core-coil-base-2.4.0-49 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/d6a93db3e991319bc4dbbf25c8e10d52/transformed/coil-base-2.4.0/res
+com.ryan.weather.core.test.core-sqlite-framework-2.4.0-50 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/d78d9f441a5b369a08c87bd71d4d9da0/transformed/sqlite-framework-2.4.0/res
+com.ryan.weather.core.test.core-savedstate-ktx-1.2.1-51 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/d830300fbebd517496bc80528e29fa1d/transformed/savedstate-ktx-1.2.1/res
+com.ryan.weather.core.test.core-customview-poolingcontainer-1.0.0-52 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/db42acd18c2a0130410d8951a6da7651/transformed/customview-poolingcontainer-1.0.0/res
+com.ryan.weather.core.test.core-lifecycle-viewmodel-compose-release-53 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/e45c8abd7680b31052620802d262d075/transformed/lifecycle-viewmodel-compose-release/res
+com.ryan.weather.core.test.core-lifecycle-livedata-core-2.8.4-54 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/eebcf56d86a9ae1ca69240c27fe10613/transformed/lifecycle-livedata-core-2.8.4/res
+com.ryan.weather.core.test.core-lifecycle-process-2.8.4-55 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/f09f9d0032f376cbbcd74bc431e83f0b/transformed/lifecycle-process-2.8.4/res
+com.ryan.weather.core.test.core-activity-ktx-1.9.1-56 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/f0af678e345ff3c379355a9fb0328132/transformed/activity-ktx-1.9.1/res
+com.ryan.weather.core.test.core-foundation-layout-release-57 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/f338b95aa6603b7a2893ca56e437136f/transformed/foundation-layout-release/res
+com.ryan.weather.core.test.core-ads-adservices-1.0.0-beta05-58 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/f354fa8c62365bea7ece7be449a13295/transformed/ads-adservices-1.0.0-beta05/res
+com.ryan.weather.core.test.core-activity-compose-1.9.1-59 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/f5351929939116ff6f47ee00e24bf285/transformed/activity-compose-1.9.1/res
+com.ryan.weather.core.test.core-runtime-release-60 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/fc3e1833f4b5273b4c4fb258cdb22e19/transformed/runtime-release/res
+com.ryan.weather.core.test.core-core-1.13.1-61 /Users/kyawsithumoeoo/.gradle/caches/transforms-4/fd678deb1a93d190fa0bc898f6cb2207/transformed/core-1.13.1/res
+com.ryan.weather.core.test.core-androidTest-62 /Users/kyawsithumoeoo/Projects/Learning/Jetpack Compose/weather-app/core/build/generated/res/resValues/androidTest/debug
+com.ryan.weather.core.test.core-mergeDebugAndroidTestResources-63 /Users/kyawsithumoeoo/Projects/Learning/Jetpack Compose/weather-app/core/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/merged.dir
+com.ryan.weather.core.test.core-mergeDebugAndroidTestResources-64 /Users/kyawsithumoeoo/Projects/Learning/Jetpack Compose/weather-app/core/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/stripped.dir
+com.ryan.weather.core.test.core-debugAndroidTest-65 /Users/kyawsithumoeoo/Projects/Learning/Jetpack Compose/weather-app/core/build/intermediates/merged_res/debugAndroidTest/mergeDebugAndroidTestResources
+com.ryan.weather.core.test.core-debug-66 /Users/kyawsithumoeoo/Projects/Learning/Jetpack Compose/weather-app/core/build/intermediates/packaged_res/debug/packageDebugResources
