@@ -53,6 +53,9 @@ dependencies {
     // AndroidX Activity Compose
     api(libs.androidx.activity.compose)
 
+    // Location
+    implementation(libs.play.services.location)
+
     // Jetpack Compose
     api(platform(libs.androidx.compose.bom))
     api(libs.androidx.ui)
