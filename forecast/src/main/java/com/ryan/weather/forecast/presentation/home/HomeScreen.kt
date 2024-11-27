@@ -1,8 +1,6 @@
 package com.ryan.weather.forecast.presentation.home
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -33,8 +31,8 @@ import com.ryan.weather.core.presentation.components.BackgroundImageContainer
 import com.ryan.weather.core.presentation.components.ProgressDialog
 import com.ryan.weather.core.presentation.utils.ViewState
 import com.ryan.weather.core.presentation.utils.toString
-import com.ryan.weather.forecast.presentation.detail.components.SearchTextField
-import com.ryan.weather.forecast.presentation.models.CityUi
+import com.ryan.weather.forecast.presentation.detail.components.CurrentWeatherDetailsView
+import com.ryan.weather.forecast.presentation.models.WeatherUi
 import kotlinx.coroutines.launch
 
 @Composable
@@ -46,16 +44,12 @@ fun HomeScreen(
 
     val context = LocalContext.current
 
-    var cities by remember { mutableStateOf<List<CityUi>?>(emptyList()) }
-
-    var searchCity by remember { mutableStateOf("") }
+    var currentWeather by remember { mutableStateOf<WeatherUi?>(null) }
 
     var showAlert by remember { mutableStateOf(false) }
     var alertTitle by remember { mutableStateOf("") }
     var alertMsg by remember { mutableStateOf("") }
     var showLoading by remember { mutableStateOf(false) }
-
-    var showOfflineData by remember { mutableStateOf(false) }
 
     @Composable
     fun showAlert() {
@@ -81,41 +75,35 @@ fun HomeScreen(
         }
     }
 
-//    LaunchedEffect(key1 = searchCity) {
-//        if (searchCity.length > 3) {
-//            viewModel.getCities(searchCity)
-//        } else {
-//            cities = null
-//        }
-//    }
-
     LaunchedEffect(key1 = Unit) {
+        viewModel.getCurrentWeather("bangkok")
         scope.launch {
-
-            viewModel.locationState.collect {
+            viewModel.weatherState.collect {
                 when (it) {
+
                     is ViewState.Error -> {
                         showLoading = false
-                        showOfflineData = true
                         alertTitle = "Error"
                         alertMsg = it.error.toString(context)
                         showAlert = true
                     }
 
                     ViewState.Loading -> {
-                        // Handle loading
+                        showLoading = true
                     }
 
                     ViewState.NoData -> {
-                        // Handle no data
+                        showLoading = false
                     }
 
                     is ViewState.Success -> {
-                        cities = it.data
+                        showLoading = false
+                        currentWeather = it.data
                     }
 
                     is ViewState.Offline -> {
-
+                        showLoading = false
+                        currentWeather = it.data
                     }
                 }
             }
@@ -131,40 +119,6 @@ fun HomeScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Spacer(modifier = Modifier.height(24.dp))
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ) {
-                SearchTextField(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(8.dp),
-                    value = searchCity,
-                    cities = cities,
-                    onValueChange = {
-                        searchCity = it
-                    },
-                    onSearch = {
-                        if (searchCity.length > 3) {
-                            viewModel.getCities(searchCity)
-                        } else {
-                            cities = null
-                        }
-                    },
-                    onCitySelected = { city ->
-                        searchCity = city.name
-                        searchCity = ""
-                        cities = null
-                    },
-                    onClearCityList = {
-                        cities = null
-                    }
-                )
-            }
-
-            Spacer(modifier = Modifier.height(8.dp))
 
             Column(
                 modifier = Modifier
@@ -172,8 +126,10 @@ fun HomeScreen(
                     .padding(8.dp)
                     .verticalScroll(rememberScrollState())
             ) {
-                Column {
-
+                if (showLoading) {
+                    showLoading = true
+                } else {
+                    currentWeather?.let { CurrentWeatherDetailsView(it) }
                 }
             }
         }

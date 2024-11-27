@@ -50,4 +50,9 @@ dependencies {
     api(libs.hilt.android)
     kapt(libs.hilt.compiler)
     api(libs.hilt.navigation.compose)
+
+    // Room database
+    api(libs.room.runtime)
+    kapt(libs.room.compiler)
+    api(libs.room.ktx)
 }
