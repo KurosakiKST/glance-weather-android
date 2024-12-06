@@ -1,13 +1,18 @@
 package com.ryan.weather.core.navigation
 
-object NavigationRegistry {
-    private val destinations = mutableSetOf<ComposableNavigationDestination>()
+import javax.inject.Inject
+import javax.inject.Singleton
 
-    fun addDestination(destination: ComposableNavigationDestination) {
-        destinations.add(destination)
+@Singleton
+class NavigationRegistry @Inject constructor() {
+    private val _destinations = mutableSetOf<NavigationDestination>()
+    val destinations: Set<NavigationDestination> = _destinations
+
+    fun register(destination: NavigationDestination) {
+        _destinations.add(destination)
     }
 
-    fun getDestination(route: String): ComposableNavigationDestination? {
+    fun getDestination(route: Route): NavigationDestination? {
         return destinations.find { it.route == route }
     }
 }

@@ -17,6 +17,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -24,20 +25,23 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavHostController
-import com.ryan.weather.core.navigation.Routes
+import com.ryan.weather.core.navigation.NavigationCommand
+import com.ryan.weather.core.navigation.NavigationManager
+import com.ryan.weather.core.navigation.Route
 import com.ryan.weather.core.presentation.components.BackgroundImageContainer
 import com.ryan.weather.core.presentation.components.PrimaryLargeButton
 import com.ryan.weather.core.presentation.components.TextBody1
 import com.ryan.weather.core.presentation.components.TextH5
 import com.ryan.weather.forecast.R
+import kotlinx.coroutines.launch
 
 @Composable
 fun WelcomeScreen(
-    navController: NavHostController,
+    navigationManager: NavigationManager,
     viewModel: WelcomeViewModel = hiltViewModel()
 ) {
     val locationState by viewModel.locationState.collectAsStateWithLifecycle()
+    val scope = rememberCoroutineScope() // Add this line to get coroutine scope
 
     val permissionLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestPermission()
@@ -61,7 +65,15 @@ fun WelcomeScreen(
                     LocationDisplay(
                         location = null,
                         onClick = {
-                            navController.navigate(Routes.HomeScreen.route) { popUpTo(0) }
+                            scope.launch { // Launch coroutine here
+                                navigationManager.navigate(
+                                    NavigationCommand.NavigateToRoute(
+                                        route = Route.Home,
+                                        popUpTo = Route.Welcome,
+                                        inclusive = true
+                                    )
+                                )
+                            }
                         }
                     )
                 }
@@ -75,7 +87,15 @@ fun WelcomeScreen(
                     LocationDisplay(
                         location = location,
                         onClick = {
-                            navController.navigate(Routes.HomeScreen.route) { popUpTo(0) }
+                            scope.launch { // Launch coroutine here
+                                navigationManager.navigate(
+                                    NavigationCommand.NavigateToRoute(
+                                        route = Route.Home,
+                                        popUpTo = Route.Welcome,
+                                        inclusive = true
+                                    )
+                                )
+                            }
                         }
                     )
                 }
@@ -84,7 +104,15 @@ fun WelcomeScreen(
                     LocationDisplay(
                         location = null,
                         onClick = {
-                            navController.navigate(Routes.HomeScreen.route) { popUpTo(0) }
+                            scope.launch { // Launch coroutine here
+                                navigationManager.navigate(
+                                    NavigationCommand.NavigateToRoute(
+                                        route = Route.Home,
+                                        popUpTo = Route.Welcome,
+                                        inclusive = true
+                                    )
+                                )
+                            }
                         }
                     )
                 }

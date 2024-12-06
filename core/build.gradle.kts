@@ -91,6 +91,7 @@ dependencies {
 
     // Preview
     api(libs.androidx.ui.tooling.preview.android)
+    debugApi(libs.ui.tooling)
 
     // Testing
     api(libs.junit)
