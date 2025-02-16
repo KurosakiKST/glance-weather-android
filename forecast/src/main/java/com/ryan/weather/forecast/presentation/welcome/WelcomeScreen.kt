@@ -41,7 +41,7 @@ fun WelcomeScreen(
     viewModel: WelcomeViewModel = hiltViewModel()
 ) {
     val locationState by viewModel.locationState.collectAsStateWithLifecycle()
-    val scope = rememberCoroutineScope() // Add this line to get coroutine scope
+    val scope = rememberCoroutineScope()
 
     val permissionLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestPermission()

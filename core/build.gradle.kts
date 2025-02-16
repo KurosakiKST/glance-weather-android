@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("org.jetbrains.kotlin.kapt")
+    id("com.google.devtools.ksp")
     alias(libs.plugins.hilt.plugin)
 }
 
@@ -67,7 +67,7 @@ dependencies {
 
     // Hilt
     api(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
     api(libs.hilt.navigation.compose)
 
     // Retrofit
@@ -79,7 +79,7 @@ dependencies {
 
     // Room database
     api(libs.room.runtime)
-    kapt(libs.room.compiler)
+    ksp(libs.room.compiler)
     api(libs.room.ktx)
 
     // Firebase
