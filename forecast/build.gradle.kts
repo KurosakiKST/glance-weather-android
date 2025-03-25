@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.hilt.plugin)
-    id("org.jetbrains.kotlin.kapt")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -48,6 +48,11 @@ dependencies {
 
     // Hilt
     api(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
     api(libs.hilt.navigation.compose)
+
+    // Room database
+    api(libs.room.runtime)
+    ksp(libs.room.compiler)
+    api(libs.room.ktx)
 }
