@@ -1,13 +1,12 @@
 package com.ryan.weather.core.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavHostController
 
 interface NavigationDestination {
-    val route: String
-}
+    val route: Route
 
-interface ComposableNavigationDestination : NavigationDestination {
     @Composable
-    fun Content(navController: NavHostController)
+    fun Content(
+        navigationManager: NavigationManager
+    )
 }

@@ -1,4 +1,4 @@
-package com.ryan.weather.forecast.presentation.detail.components
+package com.ryan.weather.forecast.presentation.home.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
