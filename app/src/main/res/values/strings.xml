@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Weather App</string>
+    <string name="app_name">Glance</string>
 
     // Network Error String
     <string name="error_request_timeout">The request timed out.</string>

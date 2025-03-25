@@ -69,7 +69,7 @@ android {
 dependencies {
     // Core and Feature Weather modules
     implementation(project(":core"))
-    implementation(project(":forecast"))
+    implementation(project(":feature"))
 
     // Hilt
     implementation(libs.hilt.android)

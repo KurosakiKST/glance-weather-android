@@ -3,35 +3,45 @@ package com.ryan.weather
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.ryan.weather.core.navigation.NavigationManager
-import com.ryan.weather.core.navigation.NavigationRegistry
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.ryan.weather.core.presentation.theme.WeatherAppTheme
-import com.ryan.weather.forecast.navigation.ForecastModuleInitializer
-import com.ryan.weather.navigation.AppNavigation
+import com.ryan.weather.navigation.BottomNavbar
+import com.ryan.weather.navigation.GlanceNavHost
+import com.ryan.weather.navigation.Routes
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @Inject
-    lateinit var navigationRegistry: NavigationRegistry
-
-    @Inject
-    lateinit var navigationManager: NavigationManager
-
-    @Inject
-    lateinit var forecastModuleInitializer: ForecastModuleInitializer
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        forecastModuleInitializer.initialize()
-
         setContent {
             WeatherAppTheme {
-                AppNavigation(
-                    navigationRegistry = navigationRegistry,
-                    navigationManager = navigationManager
-                )
+                val navController = rememberNavController()
+                val navBackStackEntry by navController.currentBackStackEntryAsState()
+                val currentRoute = navBackStackEntry?.destination?.route
+
+                val showBottomBar = when (currentRoute) {
+                    Routes.Home.route, Routes.Search.route, Routes.MyCities.route -> true
+                    else -> false
+                }
+
+                Scaffold(
+                    bottomBar = {
+                        if (showBottomBar) {
+                            BottomNavbar(navController = navController)
+                        }
+                    }
+                ) { paddingValues ->
+                    GlanceNavHost(
+                        navController = navController,
+                        modifier = Modifier.padding(paddingValues)
+                    )
+                }
             }
         }
     }

@@ -19,7 +19,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "weather-app"
+rootProject.name = "Glance"
 include(":app")
 include(":core")
-include(":forecast")
+include(":feature")
